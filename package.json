@@ -1,0 +1,37 @@
+{
+  "name": "rage_against_the_enemy_v3",
+  "version": "1.0.0",
+  "description": "refactored with good practices",
+  "main": "index.js",
+  "author": "Stanimir Genkov",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server --config webpack/webpack.dev",
+    "build": "webpack -p --progress --config webpack/webpack.prod",
+    "release": "webpack --progress ",
+    "transform": "node transformScript.js",
+    "reset": "node resetScript.js"
+  },
+  "dependencies": {
+    "@pixi/core": "^5.3.3",
+    "@pixi/graphics": "^5.3.3",
+    "pixi.js": "^5.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/polyfill": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^5.0.1",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.4"
+  }
+}
