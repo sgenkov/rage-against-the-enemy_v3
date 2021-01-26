@@ -1,12 +1,13 @@
 import { app } from './index';
 import * as PIXI from 'pixi.js';
 
-export default class GameElement {
+export default class GameElement extends PIXI.Sprite {
   constructor(name, type, rect) {
+    super();
     this.name = name;
     this.speed = 0;
     this.type = type;
-    this.sprite = this.getSprite();
+    this.getSprite();
     
   };
 
@@ -20,7 +21,7 @@ export default class GameElement {
       this.sprite.x = 130;
       this.sprite.y = 50;
       this.sprite.anchor.set(0.5);
-    } else if (this.name = "enemy") {
+    } else if (this.name === "enemy") {
       console.log('ENEMY CREATED');
       this.sprite = new PIXI.Sprite.from(app.loader.resources["enemyBlue"].url);
       this.sprite.scale.x = -0.1;

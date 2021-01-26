@@ -21,52 +21,6 @@
                 "obstacle":["explode"]
             },
             "dimentions": [50, 50, 20, 20]
-        },
-        {
-            "name": "enemy",
-            "type": "yellow",
-            "behaviours":["move"],
-            "hitGroup":["enemy"],
-            "speed":[0,0],
-            "colides":{
-                "playerBullet":["break"]
-            },
-            "dimentions": [200, 200, 20, 20]
-        },
-        {
-            "name": "enemy",
-            "type": "yellow",
-            "behaviours":["move"],
-            "hitGroup":["enemy"],
-            "speed":[0,0],
-            "colides":{
-                "playerBullet":["break"]
-            },
-            "dimentions": [300, 300, 20, 20]
-        },
-        {
-            "name":"wall1",
-            "behaviours":[],
-            "hitGroup":["vWall"],
-            "dimentions": [0, -5, 500, 5]
-        },
-        {
-            "name":"wall2",
-            "behaviours":[],
-            "hitGroup":["vWall"],
-            "dimentions": [0, 300, 500, 5]
-        },
-        {
-            "name":"wall3",
-            "behaviours":[],
-            "hitGroup":["hWall"],
-            "dimentions": [-5, 0, 5, 300]
-        },
-        {
-            "name":"wall4",
-            "behaviours":[],
-            "hitGroup":["hWall"],
-            "dimentions": [500, 0, 5, 300]
         }
     ],
     "assets" : [

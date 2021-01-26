@@ -1,6 +1,8 @@
 import { Graphics } from "pixi.js";
 import { colide } from "./utils";
 import GameElement from './GameElement';
+import { app } from './index';
+import * as PIXI from 'pixi.js';
 
 export default class PixiDelegate {
     constructor(app, size) {
@@ -11,13 +13,16 @@ export default class PixiDelegate {
     }
 
     createElement = () => {
-        const color = 0x1FF455;
-        let graphic = new Graphics();
-        graphic.beginFill(color);
-        graphic.drawRect(0, 0, 10, 10)
-        graphic.endFill();
+        // const color = 0x1FF455;
+        // let graphic = new Graphics();
+        // graphic.beginFill(color);
+        // graphic.drawRect(0, 0, 10, 10)
+        // graphic.endFill();
 
-        return graphic;
+        // let graphic = new PIXI.Sprite.from(app.loader.resources["playerShip"].url)
+        let graphic = new GameElement();
+        console.log('graphic', graphic.sprite);
+        return graphic.sprite;
     }
 
     getGraphic = (id) => {
@@ -71,7 +76,6 @@ export default class PixiDelegate {
     }
 
     render(gameElements) {
-        console.count('render');
         if(this.app == null) {
             return;
         };
