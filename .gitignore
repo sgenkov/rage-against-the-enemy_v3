@@ -30,3 +30,5 @@ yarn-error.log*
 yarn.lock
 deleteThis.js
 deleteThis.md
+sceneMaker.js
+NOTES.md
