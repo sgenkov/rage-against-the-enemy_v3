@@ -1,30 +1,40 @@
 import { app } from './index';
 import * as PIXI from 'pixi.js';
+import sheetSource from './SpriteSheet.json';
 
-// export default class GameElement extends PIXI.Sprite {
-  export default class GameElement {
+export default class GameElement {
   constructor(el) {
-    // super();
     this.name = el.name;
     this.speed = 0;
     this.type = el.type;
     this.rect = el.rect;
+    this.SHEETS = {};
+    this.createSheets();
     this.getSprite();
+  };
+
+  createSheets = () => {
+    let ssheet = new PIXI.BaseTexture.from(app.loader.resources["SpriteSheet"].url);
+    for (let key in sheetSource.frames) {
+      const { x, y, w, h } = sheetSource.frames[key].frame;
+      this.SHEETS[key.split('.')[0]] = new PIXI.Texture(ssheet, new PIXI.Rectangle(x, y, w, h));
+    };
+    console.log('SHEETS', this.SHEETS);
   };
 
   getSprite = () => {
     if (this.name === "player") {
-      // console.log('app', app.loader.resources["playerShip"]);
       console.log('PLAYER CREATED');
-      this.sprite = new PIXI.Sprite.from(app.loader.resources["playerShip"].url);
-      this.sprite.scale.x = 0.1;
-      this.sprite.scale.y = 0.1;
+      this.sprite = new PIXI.Sprite.from(this.SHEETS["player"]);
+      console.log(this.sprite);
+      this.sprite.scale.x = 2.1;
+      this.sprite.scale.y = 2.1;
       this.sprite.x = 130;
       this.sprite.y = 50;
       this.sprite.anchor.set(0.5);
     } else if (this.name === "enemy") {
       console.log('ENEMY CREATED');
-      this.sprite = new PIXI.Sprite.from(app.loader.resources["enemyBlue"].url);
+      this.sprite = new PIXI.Sprite.from(this.SHEETS["enemy"]);
       this.sprite.scale.x = -0.1;
       this.sprite.scale.y = 0.1;
       this.sprite.x = 130;
@@ -32,7 +42,7 @@ import * as PIXI from 'pixi.js';
       this.sprite.anchor.set(0.5);
     } else {
       console.log('DEFAULT CREATED');
-      this.sprite = new PIXI.Sprite.from(app.loader.resources["enemyRed"].url);
+      this.sprite = new PIXI.Sprite.from(this.SHEETS["rock"]);
       this.sprite.scale.x = -0.1;
       this.sprite.scale.y = 0.1;
       this.sprite.x = 250;
