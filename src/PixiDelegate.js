@@ -12,7 +12,7 @@ export default class PixiDelegate {
         this.freeGraphics = [];
     }
 
-    createElement = () => {
+    createElement = (el) => {
         // const color = 0x1FF455;
         // let graphic = new Graphics();
         // graphic.beginFill(color);
@@ -20,12 +20,11 @@ export default class PixiDelegate {
         // graphic.endFill();
 
         // let graphic = new PIXI.Sprite.from(app.loader.resources["playerShip"].url)
-        let graphic = new GameElement();
-        console.log('graphic', graphic.sprite);
+        let graphic = new GameElement(el);
         return graphic.sprite;
     }
 
-    getGraphic = (id) => {
+    getGraphic = (el) => {
         let {
             freeGraphics,
             createElement,
@@ -36,12 +35,12 @@ export default class PixiDelegate {
 
         let graphic;
         if (freeGraphics.length == 0) {
-            graphic = createElement();
+            graphic = createElement(el);
         } else {
             graphic = freeGraphics.pop();
         }
 
-        graphic.geId = id;
+        graphic.geId = el.id;
 
         stage.addChild(graphic);
 
@@ -119,7 +118,7 @@ export default class PixiDelegate {
                 if (map[el.id]) {
                     graphic = map[el.id];
                 } else {
-                    graphic = getGraphic(el.id);
+                    graphic = getGraphic(el);
                 };
                 applySize(el, graphic);
             } else {

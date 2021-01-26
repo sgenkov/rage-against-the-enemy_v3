@@ -21,6 +21,23 @@
                 "obstacle":["explode"]
             },
             "dimentions": [50, 50, 20, 20]
+        },
+        {
+            "name": "enemy",
+            "type": "yellow",
+            "behaviours":["move"],
+            "hitGroup":["enemy"],
+            "speed":[0,0],
+            "colides":{
+                "playerBullet":["break"]
+            },
+            "dimentions": [200, 200, 20, 20]
+        },
+        {
+            "name":"wall1",
+            "behaviours":[],
+            "hitGroup":["vWall"],
+            "dimentions": [0, -5, 500, 5] 
         }
     ],
     "assets" : [

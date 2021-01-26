@@ -1,14 +1,15 @@
 import { app } from './index';
 import * as PIXI from 'pixi.js';
 
-export default class GameElement extends PIXI.Sprite {
-  constructor(name, type, rect) {
-    super();
-    this.name = name;
+// export default class GameElement extends PIXI.Sprite {
+  export default class GameElement {
+  constructor(el) {
+    // super();
+    this.name = el.name;
     this.speed = 0;
-    this.type = type;
+    this.type = el.type;
+    this.rect = el.rect;
     this.getSprite();
-    
   };
 
   getSprite = () => {
@@ -16,7 +17,7 @@ export default class GameElement extends PIXI.Sprite {
       // console.log('app', app.loader.resources["playerShip"]);
       console.log('PLAYER CREATED');
       this.sprite = new PIXI.Sprite.from(app.loader.resources["playerShip"].url);
-      this.sprite.scale.x = -0.1;
+      this.sprite.scale.x = 0.1;
       this.sprite.scale.y = 0.1;
       this.sprite.x = 130;
       this.sprite.y = 50;
