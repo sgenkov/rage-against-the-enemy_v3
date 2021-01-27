@@ -9,18 +9,8 @@ export default class GameElement {
     this.speed = 0;
     this.type = el.type;
     this.rect = el.rect;
-    // this.SHEETS = {};
-    // this.createSheets();
     this.getSprite();
   };
-
-  // createSheets = () => {
-  //   let ssheet = new PIXI.BaseTexture.from(app.loader.resources["SpriteSheet"].url);
-  //   for (let key in sheetSource.frames) {
-  //     const { x, y, w, h } = sheetSource.frames[key].frame;
-  //     this.SHEETS[key.split('.')[0]] = new PIXI.Texture(ssheet, new PIXI.Rectangle(x, y, w, h));
-  //   };
-  // };
 
   getSprite = () => {
     if (this.name === "player") {

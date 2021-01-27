@@ -1,8 +1,5 @@
-import { Graphics } from "pixi.js";
 import { colide } from "./utils";
 import GameElement from './GameElement';
-import { app } from './index';
-import * as PIXI from 'pixi.js';
 
 export default class PixiDelegate {
     constructor(app, size) {
@@ -19,7 +16,6 @@ export default class PixiDelegate {
         // graphic.drawRect(0, 0, 10, 10)
         // graphic.endFill();
 
-        // let graphic = new PIXI.Sprite.from(app.loader.resources["playerShip"].url)
         let graphic = new GameElement(el);
         return graphic.sprite;
     }
@@ -92,7 +88,7 @@ export default class PixiDelegate {
             freeUpGraphic,
             getGraphic
         } = this;
-        // this.app.stage.children = [];
+        
         children.forEach(child => {
             if (!gameElements.some(gameElement => gameElement.id === child.id)) {
                 // stage.removeChild(child);

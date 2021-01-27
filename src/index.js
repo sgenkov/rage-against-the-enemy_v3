@@ -56,10 +56,7 @@ const stateMachine = new StateMachine(
 );
 
 gameStateModel.addEventListener("stateUpdated", (event) => {
-  // console.log(event);
   if (event.target.lastChangedProps.some((e) => e == "currentScreen")) {
-    // console.log('E___',event.target.lastChangedProps);
-    // console.log('model current screen' , model.currentScreen);
     console.log("state updated");
     stateMachine.setState(gameStateModel.currentScreen);
   }

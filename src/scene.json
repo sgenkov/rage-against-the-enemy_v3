@@ -43,8 +43,5 @@
     ],
     "assets" : [
         ["SpriteSheet", "SpriteSheet.png"]
-    ],
-    "commonBehaviours" : [
-
     ]
 }
