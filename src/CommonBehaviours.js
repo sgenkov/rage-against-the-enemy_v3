@@ -4,16 +4,16 @@ export const commonBehaviours = {
       el.rect.y += el.speed.y;
     },
     "moveUp": (el) => {
-      el.speed.y = -5;
+      el.speed.y = -4;
     },
     "moveDown": (el) => {
-      el.speed.y = 5;
+      el.speed.y = 4;
     },
     "moveLeft": (el) => {
-      el.speed.x = -1;
+      el.speed.x = -4;
     },
     "moveRight": (el) => {
-      el.speed.x = 1;
+      el.speed.x = 4;
     },
     "stop": (el) => {
       el.speed.x = 0;

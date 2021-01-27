@@ -19,6 +19,7 @@ export default class GraphicElement {
       this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["player"]);
       // this.rect = {x: 50, y: 50, width: 100, height: 100};
       // console.log(this.rect);
+      this.sprite.NAME = this.name; // experimental
       this.sprite.scale.x = 2.1;
       this.sprite.scale.y = 2.1;
       this.sprite.x = 130;
@@ -27,6 +28,7 @@ export default class GraphicElement {
     } else if (this.name === "enemy") {
       console.log('ENEMY CREATED');
       this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["enemy"]);
+      this.sprite.NAME = this.name;
       this.sprite.scale.x = -0.1;
       this.sprite.scale.y = 0.1;
       this.sprite.x = 130;
@@ -35,6 +37,7 @@ export default class GraphicElement {
     } else {
       console.log('DEFAULT CREATED');
       this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["rock"]);
+      this.sprite.NAME = this.name;
       this.sprite.scale.x = -0.1;
       this.sprite.scale.y = 0.1;
       this.sprite.x = 250;

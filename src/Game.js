@@ -40,11 +40,9 @@ export default class Game {
   gameTicker = () => {
     ++this.distanceTraveled;
 
-    if (this.distanceTraveled % 80 === 0) {
-      console.log('New Enemy Created');
+    if (this.distanceTraveled % 40 === 0) {
       this.factory.createEnemy();
     };
-
 
     let {
       behaviours,

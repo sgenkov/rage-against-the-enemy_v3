@@ -3,6 +3,7 @@ import Rectangle from './Rectangle';
 import { getIndex, binaryReprezentation, defaultGameElement } from "./utils";
 import GameElement from './GameElement';
 import Enemy from './UnitModel/Enemy';
+import { app } from './index';
 
 export default class GameElementFactory {
     constructor(gameElements) {
@@ -32,6 +33,20 @@ export default class GameElementFactory {
             "name": "enemy",
             "type": "yellow",
             "behaviours":["move", "moveLeft"],
+            "hitGroup":["enemy"],
+            "speed":[0,0],
+            "colides":{
+                "playerBullet":["break"]
+            },
+            "dimentions": [app.view.width, Math.random() * (app.view.height - 45) + 20, 20, 20]
+          }))
+    };
+
+    createPlayerTest = () => {
+        this.gameElements.push(new Enemy({
+            "name": "player",
+            "type": "yellow",
+            "behaviours":["move", "player1"],
             "hitGroup":["enemy"],
             "speed":[0,0],
             "colides":{

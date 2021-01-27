@@ -31,11 +31,14 @@ export default class PixiDelegate {
         } = this;
 
         let graphic;
-        if (freeGraphics.length == 0) {
+        const foundIndex = freeGraphics.findIndex(g => g.NAME === el.name);
+
+        if (freeGraphics.length == 0 || foundIndex === -1) {
             graphic = createElement(el);
         } else {
-            graphic = freeGraphics.pop();
-        }
+            graphic = freeGraphics[foundIndex];                                 // SLOWDOWN CODE HERE ??
+            freeGraphics.splice(foundIndex, 1);                                 // SLOWDOWN CODE HERE ??
+        };
 
         graphic.geId = el.id;
 
@@ -124,7 +127,7 @@ export default class PixiDelegate {
             };
         });
 
-        console.log(`Stage.children.length : ${this.app.stage.children.length}`);
-        console.log(`free graphics length : ${this.freeGraphics.length}`);
+        // console.log(`Stage.children.length : ${this.app.stage.children.length}`);
+        // console.log(`free graphics length : ${this.freeGraphics.length}`);
     };
 };

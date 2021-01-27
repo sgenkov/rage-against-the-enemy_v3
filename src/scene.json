@@ -13,7 +13,7 @@
             "name": "player",
             "behaviours":["player1", "move"],
             "hitGroup":["player"],
-            "speed":[0,0],
+            "speed":[0, 0],
             "colides":{
                 "hWall":["stop"],
                 "vWall":["stop"],
@@ -22,17 +22,6 @@
                 "obstacle":["explode"]
             },
             "dimentions": [50, 50, 20, 20]
-        },
-        {
-            "name": "enemy",
-            "type": "yellow",
-            "behaviours":["move", "moveLeft"],
-            "hitGroup":["enemy"],
-            "speed":[0,0],
-            "colides":{
-                "playerBullet":["break"]
-            },
-            "dimentions": [200, 200, 20, 20]
         },
         {
             "name":"wall1",
