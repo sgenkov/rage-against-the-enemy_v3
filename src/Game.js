@@ -4,6 +4,7 @@ import { onKeyDown, onKeyUp } from './ControlsHandler';
 import Rectangle from './Rectangle';
 import { app } from './index';
 import { commonBehaviours } from './CommonBehaviours';
+import GameElementFactory from './GameElementFactory';
 
 export default class Game {
   constructor(delegate) {
@@ -22,6 +23,7 @@ export default class Game {
   init = () => {
     console.log(`Hi Score : ${this.hiScore}`);
     console.log("Game.js : GAME INIT");
+    const factory = new GameElementFactory(this.gameElements);
 
     // const tLoader = new GameAssetsLoader();
     // tLoader.loadAssets();
@@ -77,6 +79,11 @@ export default class Game {
   };
 
   gameTicker = () => {
+    ++this.distanceTraveled;
+    
+    // if (this.distanceTraveled % 80 === 0) new Enemy();
+
+
     let {
       behaviours,
       delegate,

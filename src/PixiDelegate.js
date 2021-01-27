@@ -1,5 +1,5 @@
 import { colide } from "./utils";
-import GameElement from './GameElement';
+import GraphicElement from './GraphicElement';
 
 export default class PixiDelegate {
     constructor(app, size) {
@@ -16,7 +16,8 @@ export default class PixiDelegate {
         // graphic.drawRect(0, 0, 10, 10)
         // graphic.endFill();
 
-        let graphic = new GameElement(el);
+        let graphic = new GraphicElement(el);
+        console.log('graphic element', graphic.rect);
         return graphic.sprite;
     }
 
@@ -59,8 +60,8 @@ export default class PixiDelegate {
     applySize = ({ rect: { x, y, width, height }}, graphic) => {
         graphic.x = x;
         graphic.y = y;
-        graphic.width = width;
-        graphic.height = height;
+        graphic.width = width ;
+        graphic.height = height ;
     };
 
     deInit = () => {
@@ -88,7 +89,7 @@ export default class PixiDelegate {
             freeUpGraphic,
             getGraphic
         } = this;
-        
+
         children.forEach(child => {
             if (!gameElements.some(gameElement => gameElement.id === child.id)) {
                 // stage.removeChild(child);
@@ -124,7 +125,7 @@ export default class PixiDelegate {
             };
         });
 
-        // console.log(this.app.stage.children.length);
+        console.log(this.app.stage.children.length);
         // console.log(`free graphics length : ${this.freeGraphics.length}`);
     };
 };

@@ -26,7 +26,7 @@
         {
             "name": "enemy",
             "type": "yellow",
-            "behaviours":["move"],
+            "behaviours":["move", "moveLeft"],
             "hitGroup":["enemy"],
             "speed":[0,0],
             "colides":{

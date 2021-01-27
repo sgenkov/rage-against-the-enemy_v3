@@ -5,7 +5,7 @@ class GameStateModel extends EventTarget {
   }
 
   setState = (newState) => {
-    console.log("Model current screen", this.currentScreen);
+    // console.log("Model current screen", this.currentScreen);
 
     let changed = Object.entries(newState).reduce((changed, [key, value]) => {
       // Върху кой масив извършваме 'reduce' ?
