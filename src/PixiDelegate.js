@@ -125,7 +125,7 @@ export default class PixiDelegate {
             };
         });
 
-        console.log(this.app.stage.children.length);
+        // console.log(`Stage.children.length : ${this.app.stage.children.length}`);
         // console.log(`free graphics length : ${this.freeGraphics.length}`);
     };
 };

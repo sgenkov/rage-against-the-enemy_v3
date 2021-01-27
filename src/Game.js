@@ -1,7 +1,5 @@
-import scene from './scene.json';
-import { colide, binaryReprezentation, defaultGameElement } from "./utils";
+import { colide } from "./utils";
 import { onKeyDown, onKeyUp } from './ControlsHandler';
-import Rectangle from './Rectangle';
 import { app } from './index';
 import { commonBehaviours } from './CommonBehaviours';
 import GameElementFactory from './GameElementFactory';
@@ -25,50 +23,10 @@ export default class Game {
     console.log("Game.js : GAME INIT");
     const factory = new GameElementFactory(this.gameElements);
 
-    // const tLoader = new GameAssetsLoader();
-    // tLoader.loadAssets();
-
-    scene.elements.forEach(({
-      dimentions,
-      speed = [],
-      hitGroup = [],
-      colides = [],
-      ...rest
-  }, index) => {
-      let rect = new Rectangle(...dimentions);
-
-      hitGroup = hitGroup.reduce((a, e) =>
-          a | binaryReprezentation[e]
-          , 0);
-
-      let { colide, colideMap } = Object.entries(colides)
-          .reduce(({ colide, colideMap }, [key, value]) => ({
-              colide: colide | binaryReprezentation[key],
-              colideMap: {
-                  ...colideMap,
-                  [binaryReprezentation[key]]: value
-              }
-
-          })
-              , { colide: 0, colideMap: {} })
-
-      this.gameElements.push({
-          ...defaultGameElement,
-          ...rest,
-          id: index,
-          rect,
-          speed: { x: speed[0] || 0, y: speed[1] || 0 },
-          colideMap,
-          hitGroup,
-          colides: colide,
-      });
-  });
-
     document.addEventListener("keydown", (e) => onKeyDown(e, this));
     document.addEventListener("keyup", (e) => onKeyUp(e, this));
     // console.log(this.gameElements);
     app.ticker.add(this.gameTicker);
-
   };
 
   deInit = () => {
