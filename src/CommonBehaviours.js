@@ -10,10 +10,10 @@ export const commonBehaviours = {
       el.speed.y = 5;
     },
     "moveLeft": (el) => {
-      el.speed.x = -5;
+      el.speed.x = -1;
     },
     "moveRight": (el) => {
-      el.speed.x = 5;
+      el.speed.x = 1;
     },
     "stop": (el) => {
       el.speed.x = 0;

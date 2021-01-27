@@ -5,7 +5,7 @@ import GameAssetsLoader from "./GameAssetsLoader";
 
 export default class GraphicElement {
   constructor(el) {
-    console.log('el rect', el.rect);
+    // console.log('el rect', el.rect);
     this.name = el.name;
     this.speed = 0;
     this.type = el.type;
@@ -18,7 +18,7 @@ export default class GraphicElement {
       console.log('PLAYER CREATED');
       this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["player"]);
       // this.rect = {x: 50, y: 50, width: 100, height: 100};
-      console.log(this.rect);
+      // console.log(this.rect);
       this.sprite.scale.x = 2.1;
       this.sprite.scale.y = 2.1;
       this.sprite.x = 130;

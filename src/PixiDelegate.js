@@ -17,7 +17,7 @@ export default class PixiDelegate {
         // graphic.endFill();
 
         let graphic = new GraphicElement(el);
-        console.log('graphic element', graphic.rect);
+        // console.log('graphic element', graphic.rect);
         return graphic.sprite;
     }
 
@@ -92,7 +92,6 @@ export default class PixiDelegate {
 
         children.forEach(child => {
             if (!gameElements.some(gameElement => gameElement.id === child.id)) {
-                // stage.removeChild(child);
                 freeUpGraphic(child);
             };
         });
@@ -125,7 +124,7 @@ export default class PixiDelegate {
             };
         });
 
-        // console.log(`Stage.children.length : ${this.app.stage.children.length}`);
-        // console.log(`free graphics length : ${this.freeGraphics.length}`);
+        console.log(`Stage.children.length : ${this.app.stage.children.length}`);
+        console.log(`free graphics length : ${this.freeGraphics.length}`);
     };
 };

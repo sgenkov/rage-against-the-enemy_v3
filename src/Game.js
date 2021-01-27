@@ -3,6 +3,7 @@ import { onKeyDown, onKeyUp } from './ControlsHandler';
 import { app } from './index';
 import { commonBehaviours } from './CommonBehaviours';
 import GameElementFactory from './GameElementFactory';
+import Enemy from './UnitModel/Enemy';
 
 export default class Game {
   constructor(delegate) {
@@ -21,7 +22,7 @@ export default class Game {
   init = () => {
     console.log(`Hi Score : ${this.hiScore}`);
     console.log("Game.js : GAME INIT");
-    const factory = new GameElementFactory(this.gameElements);
+    this.factory = new GameElementFactory(this.gameElements);
 
     document.addEventListener("keydown", (e) => onKeyDown(e, this));
     document.addEventListener("keyup", (e) => onKeyUp(e, this));
@@ -38,8 +39,11 @@ export default class Game {
 
   gameTicker = () => {
     ++this.distanceTraveled;
-    
-    // if (this.distanceTraveled % 80 === 0) new Enemy();
+
+    if (this.distanceTraveled % 80 === 0) {
+      console.log('New Enemy Created');
+      this.factory.createEnemy();
+    };
 
 
     let {
