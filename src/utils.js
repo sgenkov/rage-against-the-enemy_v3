@@ -22,3 +22,8 @@ export const binaryReprezentation = [
 export const defaultGameElement = {
     behaviours: [],
 };
+
+let INDEX = 0;
+export const getIndex = () => {
+    return INDEX++ ;
+};

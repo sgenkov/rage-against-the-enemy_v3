@@ -1,5 +1,11 @@
 export default class GameElement {
-    constructor() {
-        
+    constructor({
+        dimentions,
+        speed = [],
+        hitGroup = [],
+        colides = [],
+        ...rest
+    }) {
+
     };
 };

@@ -1,4 +1,4 @@
-import { colide } from "./utils";
+import { colide, getIndex } from "./utils";
 import { onKeyDown, onKeyUp } from './ControlsHandler';
 import { app } from './index';
 import { commonBehaviours } from './CommonBehaviours';

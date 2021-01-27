@@ -1,6 +1,6 @@
 import scene from './scene.json';
 import Rectangle from './Rectangle';
-import { colide, binaryReprezentation, defaultGameElement } from "./utils";
+import { getIndex, binaryReprezentation, defaultGameElement } from "./utils";
 
 export default class GameElementFactory {
     constructor(gameElements) {
