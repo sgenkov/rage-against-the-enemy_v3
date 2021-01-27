@@ -96,6 +96,9 @@ export default class Game {
       "hitten": (el) => {
         this.gameElements = this.gameElements.filter(ge => ge !== el);
         el.behaviours = el.behaviours.filter(e => e != "hitten");
+      },
+      "fire": (el) => {
+        console.log('FIRE');
       }
     };
 

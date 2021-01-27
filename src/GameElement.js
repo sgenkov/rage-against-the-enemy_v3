@@ -1,6 +1,7 @@
 import { app } from './index';
 import * as PIXI from 'pixi.js';
 import sheetSource from './SpriteSheet.json';
+import GameAssetsLoader from "./GameAssetsLoader";
 
 export default class GameElement {
   constructor(el) {
@@ -8,25 +9,23 @@ export default class GameElement {
     this.speed = 0;
     this.type = el.type;
     this.rect = el.rect;
-    this.SHEETS = {};
-    this.createSheets();
+    // this.SHEETS = {};
+    // this.createSheets();
     this.getSprite();
   };
 
-  createSheets = () => {
-    let ssheet = new PIXI.BaseTexture.from(app.loader.resources["SpriteSheet"].url);
-    for (let key in sheetSource.frames) {
-      const { x, y, w, h } = sheetSource.frames[key].frame;
-      this.SHEETS[key.split('.')[0]] = new PIXI.Texture(ssheet, new PIXI.Rectangle(x, y, w, h));
-    };
-    console.log('SHEETS', this.SHEETS);
-  };
+  // createSheets = () => {
+  //   let ssheet = new PIXI.BaseTexture.from(app.loader.resources["SpriteSheet"].url);
+  //   for (let key in sheetSource.frames) {
+  //     const { x, y, w, h } = sheetSource.frames[key].frame;
+  //     this.SHEETS[key.split('.')[0]] = new PIXI.Texture(ssheet, new PIXI.Rectangle(x, y, w, h));
+  //   };
+  // };
 
   getSprite = () => {
     if (this.name === "player") {
       console.log('PLAYER CREATED');
-      this.sprite = new PIXI.Sprite.from(this.SHEETS["player"]);
-      console.log(this.sprite);
+      this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["player"]);
       this.sprite.scale.x = 2.1;
       this.sprite.scale.y = 2.1;
       this.sprite.x = 130;
@@ -34,7 +33,7 @@ export default class GameElement {
       this.sprite.anchor.set(0.5);
     } else if (this.name === "enemy") {
       console.log('ENEMY CREATED');
-      this.sprite = new PIXI.Sprite.from(this.SHEETS["enemy"]);
+      this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["enemy"]);
       this.sprite.scale.x = -0.1;
       this.sprite.scale.y = 0.1;
       this.sprite.x = 130;
@@ -42,7 +41,7 @@ export default class GameElement {
       this.sprite.anchor.set(0.5);
     } else {
       console.log('DEFAULT CREATED');
-      this.sprite = new PIXI.Sprite.from(this.SHEETS["rock"]);
+      this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["rock"]);
       this.sprite.scale.x = -0.1;
       this.sprite.scale.y = 0.1;
       this.sprite.x = 250;
