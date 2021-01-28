@@ -32,7 +32,7 @@ export default class GameElement {
             })                                                          // suspicious code here
                 , { colide: 0, colideMap: {} })                         // suspicious code here
 
-            this.colide = colide;                                       // suspicious code here
+            this.colides = colide;                                       // suspicious code here
             this.colideMap = colideMap;    
             // console.log('colideMap : ', colideMap);                  // suspicious code here
 

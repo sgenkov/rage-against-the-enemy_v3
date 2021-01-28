@@ -39,8 +39,8 @@ export default class Game {
 
   gameTicker = () => {
     ++this.distanceTraveled;
-// console.log('gameEls : ', this.gameElements);  //                this.gameElements DOES NOT filters himself ! FIND WHY !
-    if (this.distanceTraveled % 40 === 0) {
+    // console.log('gameEls : ', this.gameElements);  //                this.gameElements DOES NOT filters himself ! FIND WHY !
+    if (this.distanceTraveled % 100 === 0) {
       this.factory.createEnemy();
     };
 
@@ -62,11 +62,13 @@ export default class Game {
       // );
       this.gameElements.forEach(el2 => {
         let test = el2.hitGroup & el.colides;
-        if (test > 0
-          && colide(el.rect, el2.rect)
-        ) {
+        let test2 = colide(el.rect, el2.rect);
+        // console.log(el2.hitGroup);
+        // console.log(el);
+        // if (test > 0 && test2) {
+          if (test > 0 && test2) {
           // el2.behaviours.push("score");
-          el2.behaviours.push("explode");
+          // el2.behaviours.push("explode");
           el.behaviours.push("explode");
 
           el.colideMap[test].forEach(b => {

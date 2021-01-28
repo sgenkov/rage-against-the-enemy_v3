@@ -5,7 +5,8 @@
             "83":["moveDown"],
             "65":["moveLeft"],
             "68":["moveRight"],
-            "32":["fire"]
+            "32":["fire"],
+            "88":["debugger"]
         }
     },
     "elements":[

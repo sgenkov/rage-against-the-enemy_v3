@@ -38,8 +38,13 @@ export const commonBehaviours = {
     },
     "explode" : (el) => {
       console.log('EXPLODE');
+      el.behaviours = el.behaviours.filter(e => e != "explode");
+      console.log(el);
     },
     "break" : (el) => {
       console.log('BREAK');
-    }
+    },
+    "debugger" : () => {
+      debugger;
+    },
   };
