@@ -9,6 +9,7 @@ export default class GameElement {
         colides = [],
         ...rest
     }) {
+        // console.log('colides = []', colides);
         this.rect = new Rectangle(...dimentions);
         this.id = getIndex();
         this.speed = { x: speed[0] || 0, y: speed[1] || 0 };
@@ -32,7 +33,8 @@ export default class GameElement {
                 , { colide: 0, colideMap: {} })                         // suspicious code here
 
             this.colide = colide;                                       // suspicious code here
-            this.colideMap = colideMap;                                 // suspicious code here
+            this.colideMap = colideMap;    
+            // console.log('colideMap : ', colideMap);                             // suspicious code here
 
                 // this.gameElements.push({
             //     ...defaultGameElement,

@@ -22,12 +22,6 @@
                 "obstacle":["explode"]
             },
             "dimentions": [50, 50, 20, 20]
-        },
-        {
-            "name":"wall1",
-            "behaviours":[],
-            "hitGroup":["vWall"],
-            "dimentions": [0, -5, 500, 5] 
         }
     ],
     "assets" : [

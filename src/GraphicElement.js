@@ -34,7 +34,27 @@ export default class GraphicElement {
       this.sprite.x = 130;
       this.sprite.y = 150;
       this.sprite.anchor.set(0.5);
-    } else {
+    } else if (this.name === "bullet") {
+      console.log('BULLET CREATED');
+      this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["bullet"]);
+      this.sprite.NAME = this.name;
+      this.sprite.scale.x = -0.1;
+      this.sprite.scale.y = 0.1;
+      this.sprite.x = 130;
+      this.sprite.y = 150;
+      this.sprite.anchor.set(0.5);
+    } else if (this.name === "rock") {
+      console.log('ROCK CREATED');
+      this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["rock"]);
+      this.sprite.NAME = this.name;
+      this.sprite.scale.x = -0.1;
+      this.sprite.scale.y = 0.1;
+      this.sprite.x = 130;
+      this.sprite.y = 150;
+      this.sprite.anchor.set(0.5);
+    }
+    else {
+      throw new Error("GraphicElement.js : unknown graphic type");
       console.log('DEFAULT CREATED');
       this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["rock"]);
       this.sprite.NAME = this.name;

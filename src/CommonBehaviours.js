@@ -28,10 +28,17 @@ export const commonBehaviours = {
       };
     },
     "hitten": (el) => {
+      console.log('HITTEN');
       this.gameElements = this.gameElements.filter(ge => ge !== el);
       el.behaviours = el.behaviours.filter(e => e != "hitten");
     },
     "fire": (el) => {
       console.log('FIRE');
+    },
+    "explode" : (el) => {
+      console.log('EXPLODE');
+    },
+    "break" : (el) => {
+      console.log('BREAK');
     }
   };

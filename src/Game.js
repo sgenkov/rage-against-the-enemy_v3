@@ -39,7 +39,7 @@ export default class Game {
 
   gameTicker = () => {
     ++this.distanceTraveled;
-
+// console.log('gameEls : ', this.gameElements);  //                this.gameElements DOES NOT filters himself ! FIND WHY !
     if (this.distanceTraveled % 40 === 0) {
       this.factory.createEnemy();
     };
@@ -57,19 +57,22 @@ export default class Game {
         };
       });
 
-      el.behaviours = el.behaviours.filter(
-        (behaviour) => behaviour !== "score"
-      );
+      // el.behaviours = el.behaviours.filter(
+      //   (behaviour) => behaviour !== "score"
+      // );
       this.gameElements.forEach(el2 => {
         let test = el2.hitGroup & el.colides;
-
         if (test > 0
           && colide(el.rect, el2.rect)
         ) {
-          el2.behaviours.push("score");
+          // el2.behaviours.push("score");
+          el2.behaviours.push("explode");
+          el.behaviours.push("explode");
+
           el.colideMap[test].forEach(b => {
             behaviours[b](el);
           })
+
         }
       })
     })

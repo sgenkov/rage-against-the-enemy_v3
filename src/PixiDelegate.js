@@ -112,6 +112,7 @@ export default class PixiDelegate {
 
         gameElements.forEach(el => {
             if (colide(el.rect, size || screen)) {
+                // if (1) {
                 let graphic;
 
                 if (map[el.id]) {

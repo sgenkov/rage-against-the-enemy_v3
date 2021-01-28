@@ -29,30 +29,19 @@ export default class GameElementFactory {
     };
 
     createEnemy = () => {
-        this.gameElements.push(new Enemy({
+        const newEnemy = new Enemy({
             "name": "enemy",
             "type": "yellow",
-            "behaviours":["move", "moveLeft"],
-            "hitGroup":["enemy"],
-            "speed":[0,0],
-            "colides":{
-                "playerBullet":["break"]
+            "behaviours": ["move", "moveLeft"],
+            "hitGroup": ["enemy"],
+            "speed": [0, 0],
+            "colides": {
+                "playerBullet": ["break"],
+                "player": ["explode"]
             },
             "dimentions": [app.view.width, Math.random() * (app.view.height - 45) + 20, 20, 20]
-          }))
+        });
+        this.gameElements.push(newEnemy);
     };
 
-    createPlayerTest = () => {
-        this.gameElements.push(new Enemy({
-            "name": "player",
-            "type": "yellow",
-            "behaviours":["move", "player1"],
-            "hitGroup":["enemy"],
-            "speed":[0,0],
-            "colides":{
-                "playerBullet":["break"]
-            },
-            "dimentions": [200, 50, 20, 20]
-          }))
-    }
 };
