@@ -34,7 +34,7 @@ export default class GameElement {
 
             this.colide = colide;                                       // suspicious code here
             this.colideMap = colideMap;    
-            // console.log('colideMap : ', colideMap);                             // suspicious code here
+            // console.log('colideMap : ', colideMap);                  // suspicious code here
 
                 // this.gameElements.push({
             //     ...defaultGameElement,

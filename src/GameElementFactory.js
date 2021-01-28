@@ -39,7 +39,7 @@ export default class GameElementFactory {
                 "playerBullet": ["break"],
                 "player": ["explode"]
             },
-            "dimentions": [app.view.width, Math.random() * (app.view.height - 45) + 20, 20, 20]
+            "dimentions": [app.view.width, Math.random() * (app.view.height - 45) + 20, 60, 60]
         });
         this.gameElements.push(newEnemy);
     };

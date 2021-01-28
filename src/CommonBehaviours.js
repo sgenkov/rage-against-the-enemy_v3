@@ -21,6 +21,7 @@ export const commonBehaviours = {
       el.behaviours = el.behaviours.filter(e => e != "stop");
     },
     "score": (el) => {
+      console.log('SCORE');
       el.name === "brick" && ++this.playerScore && el.behaviours.push("hitten");
       if (el.name === "wall4") {
         console.log(`player score: ${this.playerScore}`);
