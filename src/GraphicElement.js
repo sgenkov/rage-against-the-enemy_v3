@@ -44,8 +44,8 @@ export default class GraphicElement {
       this.sprite.x = 130;
       this.sprite.y = 150;
       this.sprite.anchor.set(0.5);
-    } else if (this.name === "rock") {
-      console.log('ROCK CREATED');
+    } else if (this.name === "obstacle") {
+      console.log('OBSTACLE CREATED');
       this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["rock"]);
       this.sprite.NAME = this.name;
       this.sprite.scale.x = -0.1;

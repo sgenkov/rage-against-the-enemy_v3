@@ -41,6 +41,7 @@ export default class CommonBehaviours {
       "fire": (el) => { 
         // console.log('FIRE');
         this.factory.createBullet(el);
+        el.behaviours = el.behaviours.filter(e => e != "fire");
       },
       "explode": (el) => { 
         console.log('EXPLODE');

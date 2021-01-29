@@ -1,9 +1,9 @@
 import scene from './scene.json';
-import GameElement from './GameElement';
 import Enemy from './UnitModel/Enemy';
 import Player from './UnitModel/Player';
-import { app } from './index';
 import Bullet from './UnitModel/Bullet';
+import Obstacle from './UnitModel/Obstacle';
+import { app } from './index';
 
 export default class GameElementFactory {
     constructor(gameElements) {
@@ -13,19 +13,7 @@ export default class GameElementFactory {
 
     init = () => {
         scene.elements.forEach((sceneElement) => {
-
             this.createUnit(sceneElement.name);
-
-            // this.gameElements.push({
-            //     ...defaultGameElement,
-            //     ...rest,
-            //     id: getIndex(),
-            //     rect,
-            //     speed: { x: speed[0] || 0, y: speed[1] || 0 },
-            //     colideMap,
-            //     hitGroup,
-            //     colides: colide,
-            // });
         });
     };
 
@@ -74,7 +62,7 @@ export default class GameElementFactory {
                 "playerBullet": ["break"],
                 "player": ["explode"]
             },
-            "dimensions": [app.view.width - 30, Math.random() * (app.view.height - 45) + 20, 60, 60]
+            "dimensions": [app.view.width - 30, Math.random() * (app.view.height - 45) + 20, 60, 60] //TODO: Make the dimensions scalable
         });
         this.gameElements.push(newEnemy);
     };
@@ -96,6 +84,20 @@ export default class GameElementFactory {
         });
         this.gameElements.push(newBullet);
     };
+
+    createObstacle = () => {
+        const newObstacle = new Obstacle({
+            "name": "obstacle",
+            "behaviours": ["move"],
+            "hitGroup": ["obstacle"],
+            "speed": [-2, 0],
+            "colides": {
+            },
+            "dimensions": [app.view.width, app.view.height - 5, Math.random() * 150, Math.random() * 150] //TODO: Make the dimensions scalable
+            // "dimensions": [250 , 250, 60, 60] //TODO: Make the dimensions scalable
+        });
+        this.gameElements.push(newObstacle);
+    }
 
 
     //TODO: createPlayer

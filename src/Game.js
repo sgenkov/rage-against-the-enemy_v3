@@ -1,13 +1,11 @@
-import { colide, getIndex } from "./utils";
+import { colide } from "./utils";
 import { onKeyDown, onKeyUp } from './ControlsHandler';
 import { app } from './index';
-import CommonBehaviours  from './CommonBehaviours';
+import CommonBehaviours from './CommonBehaviours';
 import GameElementFactory from './GameElementFactory';
-import Enemy from './UnitModel/Enemy';
 
 export default class Game {
   constructor(delegate) {
-    // this.behaviours = commonBehaviours;
     this.name = "play";
     this.delegate = delegate;
     this.score = 0;
@@ -18,7 +16,9 @@ export default class Game {
     this.gameElements = [];
 
     this.difficulty = {
-      enemyFrequency: 300
+      enemyAppearanceFrequency: 100,    //^ increase this to DEcrease difficulty
+      enemyShotFrequency: 7,            //^ increase this to increase difficulty 
+      obstacleAppearanceFrequency: 42   //^ increase this to increase difficulty 
     };
 
   };
@@ -53,8 +53,18 @@ export default class Game {
       };
     });
 
-    if (this.distanceTraveled % this.difficulty.enemyFrequency === 0) {
+    if (this.distanceTraveled % this.difficulty.enemyAppearanceFrequency === 0) { //TODO: Move this to method 
       this.factory.createUnit("enemy");
+    };
+
+    this.gameElements.forEach(element => {
+      if ((element.name === "enemy") && (Math.random() * 1000 < this.difficulty.enemyShotFrequency)) { //TODO: Move this to method 
+        this.factory.createBullet(element);
+      };
+    });
+
+    if (this.distanceTraveled % this.difficulty.obstacleAppearanceFrequency === 0) { //TODO: Move this to method 
+      this.factory.createObstacle();
     };
 
     let {
@@ -76,12 +86,7 @@ export default class Game {
       this.gameElements.forEach(el2 => {
         let test = el2.hitGroup & el.colides;
         let test2 = colide(el.rect, el2.rect);
-        // console.log(el2.hitGroup);
-        // console.log(el);
-        // if (test > 0 && test2) {
-          if (test > 0 && test2) {
-          // el2.behaviours.push("score");
-          // el2.behaviours.push("explode");
+        if (test > 0 && test2) {
           // el.behaviours.push("explode"); //* This one removes only the Enemy
           el2.behaviours.push("explode"); //* This one removes both colided elements
 
