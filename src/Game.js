@@ -1,13 +1,13 @@
 import { colide, getIndex } from "./utils";
 import { onKeyDown, onKeyUp } from './ControlsHandler';
 import { app } from './index';
-import { commonBehaviours } from './CommonBehaviours';
+import CommonBehaviours  from './CommonBehaviours';
 import GameElementFactory from './GameElementFactory';
 import Enemy from './UnitModel/Enemy';
 
 export default class Game {
   constructor(delegate) {
-    this.behaviours = commonBehaviours;
+    // this.behaviours = commonBehaviours;
     this.name = "play";
     this.delegate = delegate;
     this.score = 0;
@@ -23,6 +23,7 @@ export default class Game {
     console.log(`Hi Score : ${this.hiScore}`);
     console.log("Game.js : GAME INIT");
     this.factory = new GameElementFactory(this.gameElements);
+    this.behaviours = new CommonBehaviours(this.gameElements).commonBehaviours;
 
     document.addEventListener("keydown", (e) => onKeyDown(e, this));
     document.addEventListener("keyup", (e) => onKeyUp(e, this));
@@ -40,7 +41,7 @@ export default class Game {
   gameTicker = () => {
     ++this.distanceTraveled;
     // console.log('gameEls : ', this.gameElements);  //! this.gameElements DOES NOT filters himself ! FIND WHY !
-    if (this.distanceTraveled % 50 === 0) {
+    if (this.distanceTraveled % 400 === 0) {
       this.factory.createEnemy();
     };
 
@@ -53,7 +54,7 @@ export default class Game {
       el.behaviours.forEach(b => {
         let behaviour = behaviours[b];
         if (behaviour) {
-          behaviour(el, this.gameElements);
+          behaviour(el);
         };
       });
 
@@ -69,16 +70,17 @@ export default class Game {
           if (test > 0 && test2) {
           // el2.behaviours.push("score");
           // el2.behaviours.push("explode");
-          // el.behaviours.push("explode"); //* This one returns 'undefined' on colision
-          el2.behaviours.push("explode"); //* This one returns both 'undefined' and the correct argument on colision
+          // el.behaviours.push("explode"); //* This one removes only the Enemy
+          el2.behaviours.push("explode"); //* This one removes both colided elements
 
           el.colideMap[test].forEach(b => {
-            behaviours[b](el, this.gameElements);
+            behaviours[b](el);
           })
 
         }
       })
     })
+    console.log(this.gameElements);
     delegate.render(this.gameElements);
   };
 
