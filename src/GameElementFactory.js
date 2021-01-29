@@ -17,7 +17,7 @@ export default class GameElementFactory {
         });
     };
 
-    createUnit = (type) => {
+    createUnit = (type, el) => {
         switch (type) {
             case "player":
                 this.createPlayer();
@@ -29,7 +29,7 @@ export default class GameElementFactory {
                 this.createObstacle();
                 break;
             case "bullet":
-                this.createBullet;
+                this.createBullet(el);
                 break;
         };
     };
@@ -97,7 +97,7 @@ export default class GameElementFactory {
             // "dimensions": [250 , 250, 60, 60] //TODO: Make the dimensions scalable
         });
         this.gameElements.push(newObstacle);
-    }
+    };
 
 
     //TODO: createPlayer

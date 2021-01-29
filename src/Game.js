@@ -59,12 +59,12 @@ export default class Game {
 
     this.gameElements.forEach(element => {
       if ((element.name === "enemy") && (Math.random() * 1000 < this.difficulty.enemyShotFrequency)) { //TODO: Move this to method 
-        this.factory.createBullet(element);
+        this.factory.createUnit("bullet", element);
       };
     });
 
     if (this.distanceTraveled % this.difficulty.obstacleAppearanceFrequency === 0) { //TODO: Move this to method 
-      this.factory.createObstacle();
+      this.factory.createUnit("obstacle");
     };
 
     let {
