@@ -73,7 +73,7 @@ export default class Game {
           el2.behaviours.push("explode"); //* This one returns both 'undefined' and the correct argument on colision
 
           el.colideMap[test].forEach(b => {
-            behaviours[b](el);
+            behaviours[b](el, this.gameElements);
           })
 
         }

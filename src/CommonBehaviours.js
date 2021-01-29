@@ -38,9 +38,10 @@ export const commonBehaviours = {
     },
     "explode" : (el, gameElements) => { //* NOT WORK
       console.log('EXPLODE');
-      console.log('this.gameElements ', gameElements);
+      console.log(gameElements);
+      gameElements = gameElements.filter(ge => ge !== el);
+      console.log(gameElements);
       el.behaviours = el.behaviours.filter(e => e != "explode");
-      // gameElements = gameElements.filter(ge => ge !== el);
       // console.log(el);
     },
     "break" : (el) => {
