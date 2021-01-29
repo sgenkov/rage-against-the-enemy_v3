@@ -1,22 +1,24 @@
+
 export default class CommonBehaviours {
-  constructor(gameElements) {
+  constructor(gameElements, factory) {
     this.gameElements = gameElements;
+    this.factory = factory;
 
     this.commonBehaviours = {
-      "move": (el) => { //* WORK
+      "move": (el) => { 
         el.rect.x += el.speed.x;
         el.rect.y += el.speed.y;
       },
-      "moveUp": (el) => { //* NOT WORK
+      "moveUp": (el) => {
         el.speed.y = -4;
       },
-      "moveDown": (el) => { //* NOT WORK
+      "moveDown": (el) => {
         el.speed.y = 4;
       },
-      "moveLeft": (el) => { //* WORK FOR ENEMY NOT FOR PLAYER
+      "moveLeft": (el) => {
         el.speed.x = -4;
       },
-      "moveRight": (el) => { //* NOT WORK
+      "moveRight": (el) => {
         el.speed.x = 4;
       },
       "stop": (el) => {
@@ -36,20 +38,21 @@ export default class CommonBehaviours {
         console.log('HITTEN');
         el.behaviours = el.behaviours.filter(e => e != "hitten");
       },
-      "fire": (el) => { //* NOT WORK
-        console.log('FIRE');
+      "fire": (el) => { 
+        // console.log('FIRE');
+        this.factory.createBullet(el);
       },
-      "explode" : (el) => { //* NOT WORK
+      "explode": (el) => { 
         console.log('EXPLODE');
         // const foundIndex = this.gameElements.indexOf(el);
         const foundIndex = this.gameElements.findIndex(i => i === el);
-        this.gameElements.splice(foundIndex, 1);
+        this.gameElements.splice(foundIndex, 1); //* Maybe this method of filtering causes a slight freezeng during colision
         el.behaviours = el.behaviours.filter(e => e != "explode");
       },
-      "break" : (el) => {
+      "break": (el) => {
         console.log('BREAK');
       },
-      "debugger" : () => {
+      "debugger": () => {
         debugger;
       },
     };

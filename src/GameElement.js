@@ -1,5 +1,5 @@
 import Rectangle from './Rectangle';
-import { getIndex, binaryReprezentation, defaultGameElement } from "./utils";
+import { getIndex, binaryReprezentation } from "./utils";
 
 export default class GameElement {
     constructor({

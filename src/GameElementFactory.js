@@ -3,6 +3,7 @@ import GameElement from './GameElement';
 import Enemy from './UnitModel/Enemy';
 import Player from './UnitModel/Player';
 import { app } from './index';
+import Bullet from './UnitModel/Bullet';
 
 export default class GameElementFactory {
     constructor(gameElements) {
@@ -47,15 +48,15 @@ export default class GameElementFactory {
     createPlayer = () => {
         const newPlayer = new Player({
             "name": "player",
-            "behaviours":["player1", "move"],
-            "hitGroup":["player"],
-            "speed":[0, 0],
-            "colides":{
-                "hWall":["stop"],
-                "vWall":["stop"],
-                "enemy":["explode"],
-                "enemyBullet":["break"],
-                "obstacle":["explode"]
+            "behaviours": ["player1", "move"],
+            "hitGroup": ["player"],
+            "speed": [0, 0],
+            "colides": {
+                "hWall": ["stop"],
+                "vWall": ["stop"],
+                "enemy": ["explode"],
+                "enemyBullet": ["break"],
+                "obstacle": ["explode"]
             },
             "dimensions": [35, app.view.height / 2, 60, 60] //TODO: Make the dimensions scalable
         });
@@ -77,10 +78,27 @@ export default class GameElementFactory {
         });
         this.gameElements.push(newEnemy);
     };
-    
+
+    createBullet = ({ rect: { x, y }, name }) => {
+        const bulletParams = (name === "player")
+            ? { X: x + 65, speed: 6 }
+            : { X: x - 65, speed: - 6 }; //TODO: Make the dimensions scalable
+        const newBullet = new Bullet({
+            "name": "bullet",
+            "behaviours": ["move"],
+            "hitGroup": ["bullet"],
+            "speed": [bulletParams.speed, 0],
+            "colides": {
+                "enemy": ["explode"],
+                "player": ["explode"]
+            },
+            "dimensions": [bulletParams.X, y, 30, 10] //TODO: Make the dimensions scalable
+        });
+        this.gameElements.push(newBullet);
+    };
+
 
     //TODO: createPlayer
-    //TODO: createBullet
     //TODO: createObstacle
 
 };

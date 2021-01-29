@@ -17,13 +17,17 @@ export default class Game {
       : 0;
     this.gameElements = [];
 
+    this.difficulty = {
+      enemyFrequency: 300
+    };
+
   };
 
   init = () => {
     console.log(`Hi Score : ${this.hiScore}`);
     console.log("Game.js : GAME INIT");
     this.factory = new GameElementFactory(this.gameElements);
-    this.behaviours = new CommonBehaviours(this.gameElements).commonBehaviours;
+    this.behaviours = new CommonBehaviours(this.gameElements, this.factory).commonBehaviours;
 
     document.addEventListener("keydown", (e) => onKeyDown(e, this));
     document.addEventListener("keyup", (e) => onKeyUp(e, this));
@@ -49,7 +53,7 @@ export default class Game {
       };
     });
 
-    if (this.distanceTraveled % 100 === 0) {
+    if (this.distanceTraveled % this.difficulty.enemyFrequency === 0) {
       this.factory.createUnit("enemy");
     };
 
