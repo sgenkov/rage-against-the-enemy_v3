@@ -13,7 +13,7 @@ export default class Player extends GameElement {
         //     "colides":{
         //         "playerBullet":["break"]
         //     },
-        //     "dimentions": [200, 200, 20, 20]
+        //     "dimensions": [200, 200, 20, 20]
         // },
     };
 };

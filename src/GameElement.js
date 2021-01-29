@@ -3,13 +3,13 @@ import { getIndex, binaryReprezentation, defaultGameElement } from "./utils";
 
 export default class GameElement {
     constructor({
-        dimentions,
+        dimensions,
         speed = [],
         hitGroup = [],
         colides = [],
         ...rest
     }) {
-        this.rect = new Rectangle(...dimentions);
+        this.rect = new Rectangle(...dimensions);
         this.id = getIndex();
         this.speed = { x: speed[0] || 0, y: speed[1] || 0 };
         for (let prop in rest) {

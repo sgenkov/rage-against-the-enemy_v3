@@ -40,9 +40,17 @@ export default class Game {
 
   gameTicker = () => {
     ++this.distanceTraveled;
-    // console.log('gameEls : ', this.gameElements);  //! this.gameElements DOES NOT filters himself ! FIND WHY !
+
+    this.gameElements.forEach(el => { //* Not so good method for clearing the outscoped units ?
+      if (!colide(el.rect, app.screen)) {
+        // this.gameElements = this.gameElements.filter(ge => ge !== el);
+        const foundIndex = this.gameElements.findIndex(i => i === el);
+        this.gameElements.splice(foundIndex, 1);
+      };
+    });
+
     if (this.distanceTraveled % 100 === 0) {
-      this.factory.createEnemy();
+      this.factory.createUnit("enemy");
     };
 
     let {
@@ -80,7 +88,7 @@ export default class Game {
         }
       })
     })
-    console.log(this.gameElements);
+    // console.log(this.gameElements);
     delegate.render(this.gameElements);
   };
 

@@ -60,22 +60,22 @@ export default class PixiDelegate {
         freeGraphics.push(graphic);
     }
 
-    applySize = ({ rect: { x, y, width, height }}, graphic) => {
+    applySize = ({ rect: { x, y, width, height } }, graphic) => {
         graphic.x = x;
         graphic.y = y;
-        graphic.width = width ;
-        graphic.height = height ;
+        graphic.width = width;
+        graphic.height = height;
     };
 
     deInit = () => {
-        
+
         this.app.stage.removeChildren();
 
         this.app = null;
     }
 
     render(gameElements) {
-        if(this.app == null) {
+        if (this.app == null) {
             return;
         };
 

@@ -41,8 +41,8 @@ export default class CommonBehaviours {
       },
       "explode" : (el) => { //* NOT WORK
         console.log('EXPLODE');
-        const foundIndex = this.gameElements.findIndex(i => i === el);
         // const foundIndex = this.gameElements.indexOf(el);
+        const foundIndex = this.gameElements.findIndex(i => i === el);
         this.gameElements.splice(foundIndex, 1);
         el.behaviours = el.behaviours.filter(e => e != "explode");
       },
