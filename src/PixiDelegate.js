@@ -15,7 +15,7 @@ export default class PixiDelegate {
         // graphic.beginFill(color);
         // graphic.drawRect(0, 0, 10, 10)
         // graphic.endFill();
-
+        //TODO: new Graphics() for the walls???
         let graphic = new GraphicElement(el);
         // console.log('graphic element', graphic.rect);
         return graphic.sprite;
@@ -36,8 +36,8 @@ export default class PixiDelegate {
         if (freeGraphics.length == 0 || foundIndex === -1) {
             graphic = createElement(el);
         } else {
-            graphic = freeGraphics[foundIndex];                                 // SLOWDOWN CODE HERE ??
-            freeGraphics.splice(foundIndex, 1);                                 // SLOWDOWN CODE HERE ??
+            graphic = freeGraphics[foundIndex];                                 //? SLOWDOWN CODE HERE ??
+            freeGraphics.splice(foundIndex, 1);                                 //? SLOWDOWN CODE HERE ??
         };
 
         graphic.geId = el.id;
@@ -112,7 +112,6 @@ export default class PixiDelegate {
 
         gameElements.forEach(el => {
             if (colide(el.rect, size || screen)) {
-                // if (1) {
                 let graphic;
 
                 if (map[el.id]) {

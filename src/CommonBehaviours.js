@@ -1,18 +1,18 @@
 export const commonBehaviours = {
-    "move": (el) => {
+    "move": (el) => { //* WORK
       el.rect.x += el.speed.x;
       el.rect.y += el.speed.y;
     },
-    "moveUp": (el) => {
+    "moveUp": (el) => { //* NOT WORK
       el.speed.y = -4;
     },
-    "moveDown": (el) => {
+    "moveDown": (el) => { //* NOT WORK
       el.speed.y = 4;
     },
-    "moveLeft": (el) => {
+    "moveLeft": (el) => { //* WORK FOR ENEMY NOT FOR PLAYER
       el.speed.x = -4;
     },
-    "moveRight": (el) => {
+    "moveRight": (el) => { //* NOT WORK
       el.speed.x = 4;
     },
     "stop": (el) => {
@@ -30,16 +30,18 @@ export const commonBehaviours = {
     },
     "hitten": (el) => {
       console.log('HITTEN');
-      this.gameElements = this.gameElements.filter(ge => ge !== el);
+      // this.gameElements = this.gameElements.filter(ge => ge !== el);
       el.behaviours = el.behaviours.filter(e => e != "hitten");
     },
-    "fire": (el) => {
+    "fire": (el) => { //* NOT WORK
       console.log('FIRE');
     },
-    "explode" : (el) => {
+    "explode" : (el, gameElements) => { //* NOT WORK
       console.log('EXPLODE');
+      console.log('this.gameElements ', gameElements);
       el.behaviours = el.behaviours.filter(e => e != "explode");
-      console.log(el);
+      // gameElements = gameElements.filter(ge => ge !== el);
+      // console.log(el);
     },
     "break" : (el) => {
       console.log('BREAK');

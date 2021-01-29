@@ -1,6 +1,4 @@
 import scene from './scene.json';
-import Rectangle from './Rectangle';
-import { getIndex, binaryReprezentation, defaultGameElement } from "./utils";
 import GameElement from './GameElement';
 import Enemy from './UnitModel/Enemy';
 import { app } from './index';
@@ -43,5 +41,9 @@ export default class GameElementFactory {
         });
         this.gameElements.push(newEnemy);
     };
+
+    //TODO: createPlayer
+    //TODO: createBullet
+    //TODO: createObstacle
 
 };

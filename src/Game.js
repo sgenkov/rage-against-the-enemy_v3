@@ -39,8 +39,8 @@ export default class Game {
 
   gameTicker = () => {
     ++this.distanceTraveled;
-    // console.log('gameEls : ', this.gameElements);  //                this.gameElements DOES NOT filters himself ! FIND WHY !
-    if (this.distanceTraveled % 100 === 0) {
+    // console.log('gameEls : ', this.gameElements);  //! this.gameElements DOES NOT filters himself ! FIND WHY !
+    if (this.distanceTraveled % 50 === 0) {
       this.factory.createEnemy();
     };
 
@@ -53,7 +53,7 @@ export default class Game {
       el.behaviours.forEach(b => {
         let behaviour = behaviours[b];
         if (behaviour) {
-          behaviour(el);
+          behaviour(el, this.gameElements);
         };
       });
 
@@ -69,7 +69,8 @@ export default class Game {
           if (test > 0 && test2) {
           // el2.behaviours.push("score");
           // el2.behaviours.push("explode");
-          el.behaviours.push("explode");
+          // el.behaviours.push("explode"); //* This one returns 'undefined' on colision
+          el2.behaviours.push("explode"); //* This one returns both 'undefined' and the correct argument on colision
 
           el.colideMap[test].forEach(b => {
             behaviours[b](el);

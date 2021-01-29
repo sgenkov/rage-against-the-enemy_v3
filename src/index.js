@@ -15,7 +15,7 @@ export const app = new Application({
 
 document.body.appendChild(app.view);
 
-GameAssetsLoader.loadAssets(); // remove the SINGLETON it holds a reference and prevents the GARBAGE COLLECTOR to clear it
+GameAssetsLoader.loadAssets(); //TODO: remove the SINGLETON it holds a reference and prevents the GARBAGE COLLECTOR from clear it
 let screen;
 const stateMachine = new StateMachine(
   {
