@@ -34,7 +34,6 @@ export default class CommonBehaviours {
       },
       "hitten": (el) => {
         console.log('HITTEN');
-        // this.gameElements = this.gameElements.filter(ge => ge !== el);
         el.behaviours = el.behaviours.filter(e => e != "hitten");
       },
       "fire": (el) => { //* NOT WORK
@@ -42,13 +41,10 @@ export default class CommonBehaviours {
       },
       "explode" : (el) => { //* NOT WORK
         console.log('EXPLODE');
-        // console.log(this.gameElements);
-        
-        // this.gameElements = this.gameElements.filter(ge => ge.id !== el.id);
-        this.gameElements.pop();
-        // console.log(this.gameElements);
+        const foundIndex = this.gameElements.findIndex(i => i === el);
+        // const foundIndex = this.gameElements.indexOf(el);
+        this.gameElements.splice(foundIndex, 1);
         el.behaviours = el.behaviours.filter(e => e != "explode");
-        // console.log(el);
       },
       "break" : (el) => {
         console.log('BREAK');

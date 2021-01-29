@@ -11,6 +11,7 @@ export default class GameElementFactory {
 
     init = () => {
         scene.elements.forEach((sceneElement) => {
+            // const elementName = sceneElement.name;
             this.gameElements.push(new GameElement(sceneElement))
 
             // this.gameElements.push({

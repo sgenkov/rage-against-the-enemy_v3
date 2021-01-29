@@ -41,7 +41,7 @@ export default class Game {
   gameTicker = () => {
     ++this.distanceTraveled;
     // console.log('gameEls : ', this.gameElements);  //! this.gameElements DOES NOT filters himself ! FIND WHY !
-    if (this.distanceTraveled % 400 === 0) {
+    if (this.distanceTraveled % 100 === 0) {
       this.factory.createEnemy();
     };
 
