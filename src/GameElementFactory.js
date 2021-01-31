@@ -17,7 +17,7 @@ export default class GameElementFactory {
         });
     };
 
-    createUnit = (type, el) => {
+    createUnit = (type, el) => { //TODO: use Map here instead switch
         switch (type) {
             case "player":
                 this.createPlayer();

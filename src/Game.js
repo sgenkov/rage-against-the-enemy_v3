@@ -53,19 +53,7 @@ export default class Game {
       };
     });
 
-    if (this.distanceTraveled % this.difficulty.enemyAppearanceFrequency === 0) { //TODO: Move this to method 
-      this.factory.createUnit("enemy");
-    };
-
-    this.gameElements.forEach(element => {
-      if ((element.name === "enemy") && (Math.random() * 1000 < this.difficulty.enemyShotFrequency)) { //TODO: Move this to method 
-        this.factory.createUnit("bullet", element);
-      };
-    });
-
-    if (this.distanceTraveled % this.difficulty.obstacleAppearanceFrequency === 0) { //TODO: Move this to method 
-      this.factory.createUnit("obstacle");
-    };
+    this.generateGameObjects();
 
     let {
       behaviours,
@@ -97,8 +85,25 @@ export default class Game {
         }
       })
     })
-    // console.log(this.gameElements);
+    console.log(this.gameElements);
     delegate.render(this.gameElements);
+  };
+
+  generateGameObjects = () => {
+    
+    if (this.distanceTraveled % this.difficulty.enemyAppearanceFrequency === 0) { 
+      this.factory.createUnit("enemy");
+    };
+
+    this.gameElements.forEach(element => {
+      if ((element.name === "enemy") && (Math.random() * 1000 < this.difficulty.enemyShotFrequency)) { 
+        this.factory.createUnit("bullet", element);
+      };
+    });
+
+    if (this.distanceTraveled % this.difficulty.obstacleAppearanceFrequency === 0) { 
+      this.factory.createUnit("obstacle");
+    };
   };
 
 };

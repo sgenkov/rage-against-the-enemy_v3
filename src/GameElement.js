@@ -16,7 +16,7 @@ export default class GameElement {
             this[prop] = rest[prop];
         };
 
-        this.hitGroup = hitGroup.reduce((a, e) =>
+        this.hitGroup = hitGroup.reduce((a, e) => //TODO: -> to utils
             a | binaryReprezentation[e]
             , 0);
 
