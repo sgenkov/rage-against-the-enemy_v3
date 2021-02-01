@@ -1,8 +1,8 @@
 
 export default class CommonBehaviours {
   constructor(gameElements, factory) {
-    this.gameElements = gameElements;
-    this.factory = factory;
+    // this.gameElements = gameElements;
+    // this.factory = factory;
 
     this.commonBehaviours = {
       "move": (el) => { 
@@ -39,15 +39,15 @@ export default class CommonBehaviours {
         el.behaviours = el.behaviours.filter(e => e != "hitten");
       },
       "fire": (el) => { 
-        // console.log('FIRE');
-        this.factory.createBullet(el);
+        console.log('FIRE');
+        gameElements.push(factory.createUnit("bullet", el));
         el.behaviours = el.behaviours.filter(e => e != "fire");
       },
       "explode": (el) => { 
         console.log('EXPLODE');
         // const foundIndex = this.gameElements.indexOf(el);
-        const foundIndex = this.gameElements.findIndex(i => i === el);
-        this.gameElements.splice(foundIndex, 1); //* Maybe this method of filtering causes a slight freezeng during colision
+        const foundIndex = gameElements.findIndex(i => i === el);
+        gameElements.splice(foundIndex, 1); //* Maybe this method of filtering causes a slight freezeng during colision
         el.behaviours = el.behaviours.filter(e => e != "explode");
       },
       "break": (el) => {

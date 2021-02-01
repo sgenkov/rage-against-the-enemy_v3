@@ -16,7 +16,7 @@ export default class Game {
     this.gameElements = [];
 
     this.difficulty = {
-      enemyAppearanceFrequency: 400,    //^ increase this to DEcrease difficulty
+      enemyAppearanceFrequency: 100,    //^ increase this to DEcrease difficulty
       enemyShotFrequency: 7,            //^ increase this to increase difficulty 
       obstacleAppearanceFrequency: 42   //^ increase this to increase difficulty 
     };
@@ -29,6 +29,7 @@ export default class Game {
     this.factory = new GameElementFactory(this.gameElements);
     this.behaviours = new CommonBehaviours(this.gameElements, this.factory).commonBehaviours;
 
+    this.gameElements.push(this.factory.createUnit("player"));
     document.addEventListener("keydown", (e) => onKeyDown(e, this));
     document.addEventListener("keyup", (e) => onKeyUp(e, this));
     app.ticker.add(this.gameTicker);
@@ -63,7 +64,7 @@ export default class Game {
       el.behaviours.forEach(b => {
         let behaviour = behaviours[b];
         if (behaviour) {
-          behaviour(el);
+          behaviour(el, this.gameElements);
         };
       });
 
@@ -89,19 +90,25 @@ export default class Game {
   };
 
   generateGameObjects = () => {
-    
-    if (this.distanceTraveled % this.difficulty.enemyAppearanceFrequency === 0) { 
-      this.factory.createUnit("enemy");
+    const {
+      factory,
+      gameElements,
+      difficulty
+    } = this;
+
+    if (this.distanceTraveled % difficulty.enemyAppearanceFrequency === 0) {
+      gameElements.push(factory.createUnit("enemy"));
     };
 
     this.gameElements.forEach(element => {
-      if ((element.name === "enemy") && (Math.random() * 1000 < this.difficulty.enemyShotFrequency)) { 
-        this.factory.createUnit("bullet", element);
+      if ((element.name === "enemy") && (Math.random() * 1000 < difficulty.enemyShotFrequency)) {
+        // gameElements.push(factory.createUnit("bullet", element));
+        element.behaviours.push("fire");  //? Better than the upper one ?
       };
     });
 
-    if (this.distanceTraveled % this.difficulty.obstacleAppearanceFrequency === 0) { 
-      this.factory.createUnit("obstacle");
+    if (this.distanceTraveled % difficulty.obstacleAppearanceFrequency === 0) {
+      gameElements.push(factory.createUnit("obstacle"));
     };
   };
 
