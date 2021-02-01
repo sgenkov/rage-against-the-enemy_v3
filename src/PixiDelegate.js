@@ -31,7 +31,13 @@ export default class PixiDelegate {
         } = this;
 
         let graphic;
-        const foundIndex = freeGraphics.findIndex(g => g.NAME === el.name);
+
+        let foundIndex; 
+        if (el.hasOwnProperty("owner")) {
+            foundIndex = freeGraphics.findIndex(g => (g.NAME === el.name) && (g.OWNER === el.owner));
+        } else {
+            foundIndex = freeGraphics.findIndex(g => g.NAME === el.name);
+        }
 
         if (freeGraphics.length == 0 || foundIndex === -1) {
             graphic = createElement(el);
@@ -63,8 +69,8 @@ export default class PixiDelegate {
     applySize = ({ rect: { x, y, width, height } }, graphic) => {
         graphic.x = x;
         graphic.y = y;
-        graphic.width = width;
-        graphic.height = height;
+        // graphic.width = width;
+        // graphic.height = height;
     };
 
     deInit = () => {

@@ -10,29 +10,25 @@ export default class GameElementFactory {
         this.gameElements = gameElements;
         this.init();
     };
-
+    
     init = () => {
+        this.unitMap = new Map([
+            ["enemy", this.createEnemy],
+            ["player", this.createPlayer],
+            ["bullet", this.createBullet],
+            ["obstacle", this.createObstacle]
+        ]);
+        
         scene.elements.forEach((sceneElement) => {
             this.createUnit(sceneElement.name);
         });
+
     };
 
-    createUnit = (type, el) => { //TODO: use Map here instead switch
-        switch (type) {
-            case "player":
-                this.createPlayer();
-                break;
-            case "enemy":
-                this.createEnemy();
-                break;
-            case "obstacle":
-                this.createObstacle();
-                break;
-            case "bullet":
-                this.createBullet(el);
-                break;
-        };
+    createUnit = (type, el) => {                    // DONE: used Map here instead switch
+        this.unitMap.get(type)(el);
     };
+
     createPlayer = () => {
         const newPlayer = new Player({
             "name": "player",
@@ -48,7 +44,7 @@ export default class GameElementFactory {
             },
             "dimensions": [35, app.view.height / 2, 60, 60] //TODO: Make the dimensions scalable
         });
-        this.gameElements.push(newPlayer);
+        this.gameElements.push(newPlayer); //TODO: Make this method to RETURN a new unit instead pushing to gameElements
     };
 
     createEnemy = () => {
@@ -64,15 +60,16 @@ export default class GameElementFactory {
             },
             "dimensions": [app.view.width - 30, Math.random() * (app.view.height - 45) + 20, 60, 60] //TODO: Make the dimensions scalable
         });
-        this.gameElements.push(newEnemy);
+        this.gameElements.push(newEnemy); //TODO: Make this method to RETURN a new unit instead pushing to gameElements
     };
 
-    createBullet = ({ rect: { x, y }, name }) => {
+    createBullet = ({ rect: { x, y, width }, name }) => {
         const bulletParams = (name === "player")
-            ? { X: x + 65, speed: 6 }
-            : { X: x - 65, speed: - 6 }; //TODO: Make the dimensions scalable
+            ? { X: x + 90, speed: 8 }
+            : { X: x - 40, speed: - 8 }; //TODO: Make the dimensions scalable
         const newBullet = new Bullet({
             "name": "bullet",
+            "owner": name,
             "behaviours": ["move"],
             "hitGroup": ["bullet"],
             "speed": [bulletParams.speed, 0],
@@ -82,7 +79,7 @@ export default class GameElementFactory {
             },
             "dimensions": [bulletParams.X, y, 30, 10] //TODO: Make the dimensions scalable
         });
-        this.gameElements.push(newBullet);
+        this.gameElements.push(newBullet); //TODO: Make this method to RETURN a new unit instead pushing to gameElements
     };
 
     createObstacle = () => {
@@ -96,7 +93,7 @@ export default class GameElementFactory {
             "dimensions": [app.view.width, app.view.height - 5, Math.random() * 150, Math.random() * 150] //TODO: Make the dimensions scalable
             // "dimensions": [250 , 250, 60, 60] //TODO: Make the dimensions scalable
         });
-        this.gameElements.push(newObstacle);
+        this.gameElements.push(newObstacle); //TODO: Make this method to RETURN a new unit instead pushing to gameElements
     };
 
 

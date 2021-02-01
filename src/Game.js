@@ -85,7 +85,7 @@ export default class Game {
         }
       })
     })
-    console.log(this.gameElements);
+    // console.log(this.gameElements);
     delegate.render(this.gameElements);
   };
 
