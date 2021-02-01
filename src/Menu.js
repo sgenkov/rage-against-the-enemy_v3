@@ -8,12 +8,12 @@ export default class Menu {
     };
 
     init = () => {
-        console.log('Menu.js : MENU INIT');
+        // console.log('Menu.js : MENU INIT'); //^ FLOW
         this.render();
     };
 
     deInit = () => {
-        console.log("Menu.js : MENU DEINIT");
+        // console.log("Menu.js : MENU DEINIT"); //^ FLOW
         app.stage.removeChild(this.text);
         this.text.removeListener("pointerdown", this.onClick);
         this.text = null;

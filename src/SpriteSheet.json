@@ -24,7 +24,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":925,"h":455},
 	"sourceSize": {"w":925,"h":455}
 },
-"rock.png":
+"obstacle.png":
 {
 	"frame": {"x":160,"y":0,"w":277,"h":280},
 	"rotated": false,

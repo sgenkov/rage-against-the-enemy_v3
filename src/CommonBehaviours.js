@@ -52,6 +52,12 @@ export default class CommonBehaviours {
       },
       "break": (el) => {
         console.log('BREAK');
+        --el.health;
+        console.log(`Health : ${el.health}`);
+        if (el.health < 1) {
+          el.behaviours.push("explode");
+        };
+        el.behaviours = el.behaviours.filter(e => e != "break");
       },
       "debugger": () => {
         debugger;

@@ -32,6 +32,7 @@ export default class GameElementFactory {
     createPlayer = () => {
         const newPlayer = new Player({
             "name": "player",
+            "health": 3,
             "behaviours": ["player1", "move"],
             "hitGroup": ["player"],
             "speed": [0, 0],
@@ -39,10 +40,10 @@ export default class GameElementFactory {
                 "hWall": ["stop"],
                 "vWall": ["stop"],
                 "enemy": ["explode"],
-                "enemyBullet": ["break"],
+                "bullet": ["break"],
                 "obstacle": ["explode"]
             },
-            "dimensions": [35, app.view.height / 2, 60, 60] //TODO: Make the dimensions scalable
+            "dimensions": [49, app.view.height / 2, 60, 60] //TODO: Make the dimensions scalable
         });
         this.gameElements.push(newPlayer); //TODO: Make this method to RETURN a new unit instead pushing to gameElements
     };
@@ -50,12 +51,14 @@ export default class GameElementFactory {
     createEnemy = () => {
         const newEnemy = new Enemy({
             "name": "enemy",
+            "health": 3,
             "type": "yellow",
-            "behaviours": ["move", "moveLeft"],
+            "behaviours": ["move"],
             "hitGroup": ["enemy"],
-            "speed": [0, 0],
+            "speed": [-2, 0],
             "colides": {
-                "playerBullet": ["break"],
+                // "playerBullet": ["break"],
+                "bullet": ["break"],
                 "player": ["explode"]
             },
             "dimensions": [app.view.width - 30, Math.random() * (app.view.height - 45) + 20, 60, 60] //TODO: Make the dimensions scalable
@@ -69,6 +72,7 @@ export default class GameElementFactory {
             : { X: x - 40, speed: - 8 }; //TODO: Make the dimensions scalable
         const newBullet = new Bullet({
             "name": "bullet",
+            "health": 1,
             "owner": name,
             "behaviours": ["move"],
             "hitGroup": ["bullet"],
@@ -88,16 +92,10 @@ export default class GameElementFactory {
             "behaviours": ["move"],
             "hitGroup": ["obstacle"],
             "speed": [-2, 0],
-            "colides": {
-            },
             "dimensions": [app.view.width, app.view.height - 5, Math.random() * 150, Math.random() * 150] //TODO: Make the dimensions scalable
             // "dimensions": [250 , 250, 60, 60] //TODO: Make the dimensions scalable
         });
         this.gameElements.push(newObstacle); //TODO: Make this method to RETURN a new unit instead pushing to gameElements
     };
-
-
-    //TODO: createPlayer
-    //TODO: createObstacle
 
 };

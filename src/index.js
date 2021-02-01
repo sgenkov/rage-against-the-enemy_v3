@@ -16,13 +16,14 @@ export const app = new Application({
 document.body.appendChild(app.view);
 
 GameAssetsLoader.loadAssets(); //TODO: remove the SINGLETON it holds a reference and prevents the GARBAGE COLLECTOR from clear it
+
 let screen;
 const stateMachine = new StateMachine(
   {
     menu: {
       allowedStates: ["play"],
       init: () => {
-        // console.log("State machine MENU init");
+        // console.log("State machine MENU init"); //^ FLOW
         screen = new Menu();
         screen.init();
         //app.ticker.add(screen.ticker);
@@ -30,7 +31,7 @@ const stateMachine = new StateMachine(
         // app.ticker.start();
       },
       deInit: () => {
-        // console.log("State machine MENU deinit");
+        // console.log("State machine MENU deinit"); //^ FLOW
         screen.deInit();
         //app.ticker.remove(screen.ticker);
         screen = null;
@@ -39,13 +40,13 @@ const stateMachine = new StateMachine(
     play: {
       allowedStates: ["menu"],
       init: () => {
-        // console.log("State machine GAME init");
+        // console.log("State machine GAME init"); //^ FLOW
         screen = new Game(new PixiDelegate(app));
         screen.init();
         //app.ticker.add(screen.ticker);
       },
       deInit: () => {
-        // console.log("State machine GAME deinit");
+        // console.log("State machine GAME deinit"); //^ FLOW
         screen.deInit();
         //app.ticker.remove(screen.ticker);
         screen = null;
@@ -57,9 +58,9 @@ const stateMachine = new StateMachine(
 
 gameStateModel.addEventListener("stateUpdated", (event) => {
   if (event.target.lastChangedProps.some((e) => e == "currentScreen")) {
-    console.log("state updated");
+    // console.log("state updated"); //^ FLOW
     stateMachine.setState(gameStateModel.currentScreen);
-  }
+  };
 });
 
 

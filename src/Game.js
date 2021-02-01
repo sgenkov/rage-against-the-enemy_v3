@@ -16,7 +16,7 @@ export default class Game {
     this.gameElements = [];
 
     this.difficulty = {
-      enemyAppearanceFrequency: 100,    //^ increase this to DEcrease difficulty
+      enemyAppearanceFrequency: 400,    //^ increase this to DEcrease difficulty
       enemyShotFrequency: 7,            //^ increase this to increase difficulty 
       obstacleAppearanceFrequency: 42   //^ increase this to increase difficulty 
     };
@@ -24,19 +24,18 @@ export default class Game {
   };
 
   init = () => {
-    console.log(`Hi Score : ${this.hiScore}`);
-    console.log("Game.js : GAME INIT");
+    // console.log(`Hi Score : ${this.hiScore}`); //^ FLOW
+    // console.log("Game.js : GAME INIT"); //^ FLOW
     this.factory = new GameElementFactory(this.gameElements);
     this.behaviours = new CommonBehaviours(this.gameElements, this.factory).commonBehaviours;
 
     document.addEventListener("keydown", (e) => onKeyDown(e, this));
     document.addEventListener("keyup", (e) => onKeyUp(e, this));
-    // console.log(this.gameElements);
     app.ticker.add(this.gameTicker);
   };
 
   deInit = () => {
-    console.log("Game.js : GAME DEINIT");
+    // console.log("Game.js : GAME DEINIT"); //^ FLOW
     // app.stage.removeChild(this.text);
     document.removeEventListener("keyup", onKeyUp);
     document.removeEventListener("keydown", onKeyDown);
@@ -76,7 +75,7 @@ export default class Game {
         let test2 = colide(el.rect, el2.rect);
         if (test > 0 && test2) {
           // el.behaviours.push("explode"); //* This one removes only the Enemy
-          el2.behaviours.push("explode"); //* This one removes both colided elements
+          el2.behaviours.push("break"); //* This one removes both colided elements
 
           el.colideMap[test].forEach(b => {
             behaviours[b](el);

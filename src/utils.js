@@ -25,6 +25,6 @@ export const defaultGameElement = {
 };
 
 let INDEX = 0;
-export const getIndex = () => {
+export const getIndex  = () => {
     return INDEX++ ;
 };
