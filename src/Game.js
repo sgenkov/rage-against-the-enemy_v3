@@ -31,7 +31,7 @@ export default class Game {
     this.behaviours = new CommonBehaviours(this.factory).commonBehaviours;
 
     gameElements.push(this.factory.createUnit("player"));
-    document.addEventListener("keydown", (e) => onKeyDown(e, this));
+    document.addEventListener("keydown", (e) => onKeyDown(e, this.behaviours));
     document.addEventListener("keyup", (e) => onKeyUp(e));
     app.ticker.add(() => this.gameTicker(gameElements));
   };
@@ -46,15 +46,6 @@ export default class Game {
   gameTicker = (gameElements) => { 
     ++this.distanceTraveled;
 
-    // gameElements.forEach(el => { //* Not so good method for clearing the outscoped units ?
-    //   if (!colide(el.rect, app.screen)) {
-    //     gameElements = gameElements.filter(ge => ge !== el); //! Why is gameElements not defined untill pass it as argument to gameTicker
-    //     // const foundIndex = gameElements.findIndex(i => i === el);
-    //     // gameElements.splice(foundIndex, 1);
-    //   };
-    // });
-
-    //? Second filtering solution 
     gameElements = gameElements.filter(el => colide(el.rect, app.screen)); //! Why is gameElements not defined untill pass it as argument to gameTicker
 
     this.generateGameObjects();

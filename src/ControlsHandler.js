@@ -1,12 +1,9 @@
 import scene from './scene.json';
 import { gameElements } from './utils';
 
-export const onKeyDown = ({ keyCode }, ref) => { //TODO: Reduce the ref argument to just 'behaviours'
+export const onKeyDown = ({ keyCode }, behaviours) => {
     // console.log('Key Down', keyCode);
     let { keyBindings } = scene;
-    let {
-      behaviours,
-    } = ref;
     gameElements.forEach(el => {
       el.behaviours.forEach(b => {
         if (keyBindings[b] && keyBindings[b][keyCode]) {
