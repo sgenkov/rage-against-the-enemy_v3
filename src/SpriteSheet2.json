@@ -1,0 +1,60 @@
+{"frames": {
+
+"bullet.png":
+{
+	"frame": {"x":0,"y":0,"w":160,"h":71},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":160,"h":71},
+	"sourceSize": {"w":160,"h":71}
+},
+"plane_blue.png":
+{
+	"frame": {"x":925,"y":0,"w":925,"h":455},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":925,"h":455},
+	"sourceSize": {"w":925,"h":455}
+},
+"plane_green.png":
+{
+	"frame": {"x":0,"y":455,"w":925,"h":455},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":925,"h":455},
+	"sourceSize": {"w":925,"h":455}
+},
+"plane_red.png":
+{
+	"frame": {"x":925,"y":455,"w":925,"h":455},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":925,"h":455},
+	"sourceSize": {"w":925,"h":455}
+},
+"plane_yellow.png":
+{
+	"frame": {"x":0,"y":910,"w":925,"h":455},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":925,"h":455},
+	"sourceSize": {"w":925,"h":455}
+},
+"rock.png":
+{
+	"frame": {"x":925,"y":910,"w":280,"h":280},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":280,"h":280},
+	"sourceSize": {"w":280,"h":280}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "SpriteSheet2.png",
+	"format": "RGBA8888",
+	"size": {"w":1850,"h":1365},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:bdf6e63f9fdfda5c22bd8ea0b758ff00:921e6db5d45211d45004d8c460692fce:fe33ea6679ce35b96cae25550482641b$"
+}
+}
