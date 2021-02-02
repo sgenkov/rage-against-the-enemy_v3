@@ -16,7 +16,7 @@ export default class Game {
     this.gameElements = [];
 
     this.difficulty = {
-      enemyAppearanceFrequency: 100,    //^ increase this to DEcrease difficulty
+      enemyAppearanceFrequency: 400,    //^ increase this to DEcrease difficulty
       enemyShotFrequency: 7,            //^ increase this to increase difficulty 
       obstacleAppearanceFrequency: 42   //^ increase this to increase difficulty 
     };
@@ -85,7 +85,7 @@ export default class Game {
         }
       })
     })
-    // console.log(this.gameElements);
+    console.log(this.gameElements);
     delegate.render(this.gameElements);
   };
 
@@ -107,9 +107,10 @@ export default class Game {
       };
     });
 
-    if (this.distanceTraveled % difficulty.obstacleAppearanceFrequency === 0) {
-      gameElements.push(factory.createUnit("obstacle"));
-    };
+    // if (this.distanceTraveled % difficulty.obstacleAppearanceFrequency === 0) {
+    //   gameElements.push(factory.createUnit("obstacle"));
+    // };
+
   };
 
 };
