@@ -1,6 +1,7 @@
+import { gameElements } from './utils';
 
 export default class CommonBehaviours {
-  constructor(gameElements, factory) {
+  constructor(factory) {
     // this.gameElements = gameElements;
     // this.factory = factory;
 
@@ -39,13 +40,14 @@ export default class CommonBehaviours {
         el.behaviours = el.behaviours.filter(e => e != "hitten");
       },
       "fire": (el) => { 
-        console.log('FIRE');
+        // console.log('FIRE'); //^ FLOW
         gameElements.push(factory.createUnit("bullet", el));
         el.behaviours = el.behaviours.filter(e => e != "fire");
       },
       "explode": (el) => { 
         console.log('EXPLODE');
-        // const foundIndex = this.gameElements.indexOf(el);
+        // console.log(gameElements);
+        // gameElements = gameElements.filter(ge => ge !== el); //! Why is gameElements undefined
         const foundIndex = gameElements.findIndex(i => i === el);
         gameElements.splice(foundIndex, 1); //* Maybe this method of filtering causes a slight freezeng during colision
         el.behaviours = el.behaviours.filter(e => e != "explode");

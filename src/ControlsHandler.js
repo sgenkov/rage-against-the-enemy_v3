@@ -1,12 +1,13 @@
 import scene from './scene.json';
+import { gameElements } from './utils';
 
-export const onKeyDown = ({ keyCode }, ref) => {
+export const onKeyDown = ({ keyCode }, ref) => { //TODO: Reduce the ref argument to just 'behaviours'
     // console.log('Key Down', keyCode);
     let { keyBindings } = scene;
     let {
       behaviours,
     } = ref;
-    ref.gameElements.forEach(el => {
+    gameElements.forEach(el => {
       el.behaviours.forEach(b => {
         if (keyBindings[b] && keyBindings[b][keyCode]) {
           keyBindings[b][keyCode].forEach(bb => {
@@ -17,12 +18,12 @@ export const onKeyDown = ({ keyCode }, ref) => {
     })
   };
 
-export const onKeyUp = ({ keyCode }, ref) => {
+export const onKeyUp = ({ keyCode }) => {
     // console.log("Key Up", keyCode);
     let { keyBindings } = scene;
-    ref.gameElements.forEach(el => {
+    gameElements.forEach(el => {
       el.behaviours.forEach(b => {
-        if (keyBindings[b] && keyBindings[b][keyCode]) {
+        if (keyBindings[b] && keyBindings[b][keyCode] && (keyCode !== 32)) {
           el.behaviours.push("stop");
         }
       })

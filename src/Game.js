@@ -1,8 +1,9 @@
-import { colide } from "./utils";
+import { colide, gameElements } from "./utils";
 import { onKeyDown, onKeyUp } from './ControlsHandler';
 import { app } from './index';
 import CommonBehaviours from './CommonBehaviours';
 import GameElementFactory from './GameElementFactory';
+
 
 export default class Game {
   constructor(delegate) {
@@ -13,10 +14,10 @@ export default class Game {
     this.hiScore = localStorage.getItem("hiScore")
       ? localStorage.getItem("hiScore")
       : 0;
-    this.gameElements = [];
+    // this.gameElements = [];
 
     this.difficulty = {
-      enemyAppearanceFrequency: 400,    //^ increase this to DEcrease difficulty
+      enemyAppearanceFrequency: 100,    //^ increase this to DEcrease difficulty
       enemyShotFrequency: 7,            //^ increase this to increase difficulty 
       obstacleAppearanceFrequency: 42   //^ increase this to increase difficulty 
     };
@@ -26,13 +27,13 @@ export default class Game {
   init = () => {
     // console.log(`Hi Score : ${this.hiScore}`); //^ FLOW
     // console.log("Game.js : GAME INIT"); //^ FLOW
-    this.factory = new GameElementFactory(this.gameElements);
-    this.behaviours = new CommonBehaviours(this.gameElements, this.factory).commonBehaviours;
+    this.factory = new GameElementFactory();
+    this.behaviours = new CommonBehaviours(this.factory).commonBehaviours;
 
-    this.gameElements.push(this.factory.createUnit("player"));
+    gameElements.push(this.factory.createUnit("player"));
     document.addEventListener("keydown", (e) => onKeyDown(e, this));
-    document.addEventListener("keyup", (e) => onKeyUp(e, this));
-    app.ticker.add(this.gameTicker);
+    document.addEventListener("keyup", (e) => onKeyUp(e));
+    app.ticker.add(() => this.gameTicker(gameElements));
   };
 
   deInit = () => {
@@ -42,16 +43,19 @@ export default class Game {
     document.removeEventListener("keydown", onKeyDown);
   };
 
-  gameTicker = () => {
+  gameTicker = (gameElements) => { 
     ++this.distanceTraveled;
 
-    this.gameElements.forEach(el => { //* Not so good method for clearing the outscoped units ?
-      if (!colide(el.rect, app.screen)) {
-        // this.gameElements = this.gameElements.filter(ge => ge !== el);
-        const foundIndex = this.gameElements.findIndex(i => i === el);
-        this.gameElements.splice(foundIndex, 1);
-      };
-    });
+    // gameElements.forEach(el => { //* Not so good method for clearing the outscoped units ?
+    //   if (!colide(el.rect, app.screen)) {
+    //     gameElements = gameElements.filter(ge => ge !== el); //! Why is gameElements not defined untill pass it as argument to gameTicker
+    //     // const foundIndex = gameElements.findIndex(i => i === el);
+    //     // gameElements.splice(foundIndex, 1);
+    //   };
+    // });
+
+    //? Second filtering solution 
+    gameElements = gameElements.filter(el => colide(el.rect, app.screen)); //! Why is gameElements not defined untill pass it as argument to gameTicker
 
     this.generateGameObjects();
 
@@ -60,18 +64,18 @@ export default class Game {
       delegate,
     } = this;
 
-    this.gameElements.forEach(el => {
+    gameElements.forEach(el => {
       el.behaviours.forEach(b => {
         let behaviour = behaviours[b];
         if (behaviour) {
-          behaviour(el, this.gameElements);
+          behaviour(el, gameElements);
         };
       });
 
       // el.behaviours = el.behaviours.filter(
       //   (behaviour) => behaviour !== "score"
       // );
-      this.gameElements.forEach(el2 => {
+      gameElements.forEach(el2 => {
         let test = el2.hitGroup & el.colides;
         let test2 = colide(el.rect, el2.rect);
         if (test > 0 && test2) {
@@ -85,14 +89,13 @@ export default class Game {
         }
       })
     })
-    console.log(this.gameElements);
-    delegate.render(this.gameElements);
+    // console.log(gameElements);
+    delegate.render(gameElements);
   };
 
   generateGameObjects = () => {
     const {
       factory,
-      gameElements,
       difficulty
     } = this;
 
@@ -100,7 +103,7 @@ export default class Game {
       gameElements.push(factory.createUnit("enemy"));
     };
 
-    this.gameElements.forEach(element => {
+    gameElements.forEach(element => {
       if ((element.name === "enemy") && (Math.random() * 1000 < difficulty.enemyShotFrequency)) {
         // gameElements.push(factory.createUnit("bullet", element));
         element.behaviours.push("fire");  //? Better than the upper one ?

@@ -4,10 +4,11 @@ import Player from './UnitModel/Player';
 import Bullet from './UnitModel/Bullet';
 import Obstacle from './UnitModel/Obstacle';
 import { app } from './index';
+import { gameElements } from './utils';
 
 export default class GameElementFactory {
-    constructor(gameElements) {
-        this.gameElements = gameElements;
+    constructor() {
+        // this.gameElements = gameElements;
         this.init();
     };
     

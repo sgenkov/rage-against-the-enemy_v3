@@ -28,3 +28,5 @@ let INDEX = 0;
 export const getIndex  = () => {
     return INDEX++ ;
 };
+
+export let gameElements = [];
