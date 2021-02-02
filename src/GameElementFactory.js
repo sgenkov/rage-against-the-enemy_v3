@@ -1,10 +1,8 @@
-import scene from './scene.json';
 import Enemy from './UnitModel/Enemy';
 import Player from './UnitModel/Player';
 import Bullet from './UnitModel/Bullet';
 import Obstacle from './UnitModel/Obstacle';
 import { app } from './index';
-import { gameElements } from './utils';
 
 export default class GameElementFactory {
     constructor() {

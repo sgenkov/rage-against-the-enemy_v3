@@ -1,6 +1,6 @@
 import { app } from './index';
 import * as PIXI from 'pixi.js';
-import sheetSource from './SpriteSheet.json';
+import sheetSource from './SpriteSheet2.json';
 import { assets } from './scene.json';
 
 class GameAssetsLoader {
@@ -34,7 +34,7 @@ class GameAssetsLoader {
     };
 
     createSheets = () => {
-        let baseSheet = new PIXI.BaseTexture.from(app.loader.resources["SpriteSheet"].url);
+        let baseSheet = new PIXI.BaseTexture.from(app.loader.resources["SpriteSheet2"].url);
         for (let key in sheetSource.frames) {
           const { x, y, w, h } = sheetSource.frames[key].frame;
           this.SHEETS[key.split('.')[0]] = new PIXI.Texture(baseSheet, new PIXI.Rectangle(x, y, w, h));

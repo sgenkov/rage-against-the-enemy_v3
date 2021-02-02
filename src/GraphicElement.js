@@ -1,6 +1,6 @@
 import { app } from './index';
 import * as PIXI from 'pixi.js';
-import sheetSource from './SpriteSheet.json';
+import sheetSource from './SpriteSheet2.json';
 import GameAssetsLoader from "./GameAssetsLoader";
 
 export default class GraphicElement {
@@ -20,7 +20,7 @@ export default class GraphicElement {
       // console.log('PLAYER CREATED'); //^ Object pooling monitoring
       this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["player"]);
       // this.rect = {x: 50, y: 50, width: 100, height: 100};
-      this.sprite.NAME = this.name; //* experimental
+      this.sprite.NAME = this.name;
       this.sprite.scale.x = 0.1;
       this.sprite.scale.y = 0.1;
       this.sprite.anchor.set(0.5);
@@ -30,7 +30,7 @@ export default class GraphicElement {
       // console.log(this.sprite);
     } else if (this.name === "enemy") {
       // console.log('ENEMY CREATED'); //^ Object pooling monitoring
-      this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["enemy"]);
+      this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["enemy_blue"]);
       this.sprite.NAME = this.name;
       this.sprite.scale.x = -0.1;
       this.sprite.scale.y = 0.1;

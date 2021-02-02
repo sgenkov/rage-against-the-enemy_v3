@@ -8,7 +8,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":160,"h":71},
 	"sourceSize": {"w":160,"h":71}
 },
-"plane_blue.png":
+"enemy_blue.png":
 {
 	"frame": {"x":925,"y":0,"w":925,"h":455},
 	"rotated": false,
@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":925,"h":455},
 	"sourceSize": {"w":925,"h":455}
 },
-"plane_green.png":
+"player.png":
 {
 	"frame": {"x":0,"y":455,"w":925,"h":455},
 	"rotated": false,
@@ -24,7 +24,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":925,"h":455},
 	"sourceSize": {"w":925,"h":455}
 },
-"plane_red.png":
+"enemy_red.png":
 {
 	"frame": {"x":925,"y":455,"w":925,"h":455},
 	"rotated": false,
@@ -32,7 +32,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":925,"h":455},
 	"sourceSize": {"w":925,"h":455}
 },
-"plane_yellow.png":
+"enemy_yellow.png":
 {
 	"frame": {"x":0,"y":910,"w":925,"h":455},
 	"rotated": false,
@@ -40,7 +40,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":925,"h":455},
 	"sourceSize": {"w":925,"h":455}
 },
-"rock.png":
+"obstacle.png":
 {
 	"frame": {"x":925,"y":910,"w":280,"h":280},
 	"rotated": false,
