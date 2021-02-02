@@ -3,7 +3,7 @@ import { onKeyDown, onKeyUp } from './ControlsHandler';
 import { app } from './index';
 import CommonBehaviours from './CommonBehaviours';
 import GameElementFactory from './GameElementFactory';
-
+import StateMachine from "./StateMachine";
 
 export default class Game {
   constructor(delegate) {
@@ -14,8 +14,6 @@ export default class Game {
     this.hiScore = localStorage.getItem("hiScore")
       ? localStorage.getItem("hiScore")
       : 0;
-    // this.gameElements = [];
-
     this.difficulty = {
       enemyAppearanceFrequency: 100,    //^ increase this to DEcrease difficulty
       enemyShotFrequency: 7,            //^ increase this to increase difficulty 
@@ -25,10 +23,37 @@ export default class Game {
   };
 
   init = () => {
-    // console.log(`Hi Score : ${this.hiScore}`); //^ FLOW
-    // console.log("Game.js : GAME INIT"); //^ FLOW
     this.factory = new GameElementFactory();
     this.behaviours = new CommonBehaviours(this.factory).commonBehaviours;
+
+    this.unitStateMachine = new StateMachine({
+      strong: {
+        allowedStates: ["moderate"],
+        init: () => {
+          // screen = new Menu();
+          // screen.init();
+        },
+        deInit: () => {
+          // screen.deInit();
+          // screen = null;
+        },
+      },
+      moderate: {
+        allowedStates: ["weak"],
+        init: () => {
+          // screen = new Game(new PixiDelegate(app));
+          // screen.init();
+        },
+        deInit: () => {
+          // screen.deInit();
+          // screen = null;
+        },
+      },
+      weak: {
+
+      }
+    },
+    "strong");
 
     gameElements.push(this.factory.createUnit("player"));
     document.addEventListener("keydown", (e) => onKeyDown(e, this.behaviours));
@@ -37,15 +62,13 @@ export default class Game {
   };
 
   deInit = () => {
-    // console.log("Game.js : GAME DEINIT"); //^ FLOW
-    // app.stage.removeChild(this.text);
     document.removeEventListener("keyup", onKeyUp);
     document.removeEventListener("keydown", onKeyDown);
   };
 
   gameTicker = (gameElements) => { 
     ++this.distanceTraveled;
-
+    
     gameElements = gameElements.filter(el => colide(el.rect, app.screen)); //! Why is gameElements not defined untill pass it as argument to gameTicker
 
     this.generateGameObjects();
@@ -63,9 +86,6 @@ export default class Game {
         };
       });
 
-      // el.behaviours = el.behaviours.filter(
-      //   (behaviour) => behaviour !== "score"
-      // );
       gameElements.forEach(el2 => {
         let test = el2.hitGroup & el.colides;
         let test2 = colide(el.rect, el2.rect);
@@ -87,17 +107,19 @@ export default class Game {
   generateGameObjects = () => {
     const {
       factory,
-      difficulty
+      difficulty: {
+        enemyShotFrequency,
+        enemyAppearanceFrequency
+      }
     } = this;
 
-    if (this.distanceTraveled % difficulty.enemyAppearanceFrequency === 0) {
+    if (this.distanceTraveled % enemyAppearanceFrequency === 0) {
       gameElements.push(factory.createUnit("enemy"));
     };
 
     gameElements.forEach(element => {
-      if ((element.name === "enemy") && (Math.random() * 1000 < difficulty.enemyShotFrequency)) {
-        // gameElements.push(factory.createUnit("bullet", element));
-        element.behaviours.push("fire");  //? Better than the upper one ?
+      if ((element.name === "enemy") && (Math.random() * 1000 < enemyShotFrequency)) {
+        element.behaviours.push("fire");
       };
     });
 

@@ -20,6 +20,7 @@ export const binaryReprezentation = [
         [key]: 1 << index,
     }
 }, {});
+
 export const defaultGameElement = {
     behaviours: [],
 };
