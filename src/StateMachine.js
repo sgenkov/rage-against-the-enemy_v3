@@ -23,4 +23,8 @@ export default class StateMachine {
             this.currentState = state;
         };
     };
+
+    testMeth = () => {
+        console.log('innerStateMachine testMeth()');
+    }
 };

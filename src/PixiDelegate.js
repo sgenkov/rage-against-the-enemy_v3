@@ -99,7 +99,7 @@ export default class PixiDelegate {
             getGraphic
         } = this;
 
-        children.forEach(child => {
+        children.forEach(child => { //TODO: Move this loop somewhere ?
             if (!gameElements.some(gameElement => gameElement.id === child.id)) {
                 freeUpGraphic(child);
             };

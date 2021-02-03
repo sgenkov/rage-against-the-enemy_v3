@@ -6,7 +6,6 @@ import { app } from './index';
 
 export default class GameElementFactory {
     constructor() {
-        // this.gameElements = gameElements;
         this.init();
     };
     
@@ -24,7 +23,7 @@ export default class GameElementFactory {
 
     };
 
-    createUnit = (type, el) => {                    // DONE: used Map here instead switch
+    createUnit = (type, el) => {
         return this.unitMap.get(type)(el);
     };
 
@@ -44,7 +43,6 @@ export default class GameElementFactory {
             },
             "dimensions": [49, app.view.height / 2, 60, 60] //TODO: Make the dimensions scalable
         });
-        // this.gameElements.push(newPlayer); //DONE: Make this method to RETURN a new unit instead pushing to gameElements
         return newPlayer;
     };
 
@@ -63,7 +61,6 @@ export default class GameElementFactory {
             },
             "dimensions": [app.view.width - 30, Math.random() * (app.view.height - 45) + 20, 60, 60] //TODO: Make the dimensions scalable
         });
-        // this.gameElements.push(newEnemy); //DONE: Make this method to RETURN a new unit instead pushing to gameElements
         return newEnemy;
     };
 
@@ -84,7 +81,6 @@ export default class GameElementFactory {
             },
             "dimensions": [bulletParams.X, y, 30, 10] //TODO: Make the dimensions scalable
         });
-        // this.gameElements.push(newBullet); //DONE: Make this method to RETURN a new unit instead pushing to gameElements
         return newBullet;
     };
 
@@ -97,7 +93,6 @@ export default class GameElementFactory {
             "dimensions": [app.view.width, app.view.height - 5, Math.random() * 150, Math.random() * 150] //TODO: Make the dimensions scalable
             // "dimensions": [250 , 250, 60, 60] //TODO: Make the dimensions scalable
         });
-        // this.gameElements.push(newObstacle); //DONE: Make this method to RETURN a new unit instead pushing to gameElements
         return newObstacle;
     };
 

@@ -1,5 +1,6 @@
 import Rectangle from './Rectangle';
 import { getIndex, binaryReprezentation } from "./utils";
+import StateMachine from './StateMachine';
 
 export default class GameElement {
     constructor({
@@ -29,9 +30,40 @@ export default class GameElement {
                 }                                              
 
             })                                                 
-                , { colide: 0, colideMap: {} })                
+                , { colide: 0, colideMap: {} });             
 
             this.colides = colide;                             
-            this.colideMap = colideMap;                        
+            this.colideMap = colideMap;                
+            
+            this.innerStateMachine = new StateMachine({
+                strong: {
+                  allowedStates: ["weak"],
+                  init: () => {
+                    // screen = new Menu();
+                    // screen.init();
+                  },
+                  deInit: () => {
+                  },
+                },
+                weak: {
+                  allowedStates: ["falling"],
+                  init: () => {
+                    // screen = new Game(new PixiDelegate(app));
+                    // screen.init();
+                  },
+                  deInit: () => {
+                    // screen.deInit();
+                    // screen = null;
+                  },
+                },
+                falling: {
+          
+                }
+              },
+              "strong");
     };
+
+    testMethod = () => {
+        console.log('GameElement testMethod()');
+    }
 };

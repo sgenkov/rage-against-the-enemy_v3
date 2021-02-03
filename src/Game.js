@@ -1,10 +1,11 @@
-import { colide, gameElements } from "./utils";
+import { colide } from "./utils";
 import { onKeyDown, onKeyUp } from './ControlsHandler';
 import { app } from './index';
 import CommonBehaviours from './CommonBehaviours';
 import GameElementFactory from './GameElementFactory';
 import StateMachine from "./StateMachine";
-
+import Model from './Model';
+ 
 export default class Game {
   constructor(delegate) {
     this.name = "play";
@@ -15,7 +16,7 @@ export default class Game {
       ? localStorage.getItem("hiScore")
       : 0;
     this.difficulty = {
-      enemyAppearanceFrequency: 100,    //^ increase this to DEcrease difficulty
+      enemyAppearanceFrequency: 600,    //^ increase this to DEcrease difficulty
       enemyShotFrequency: 7,            //^ increase this to increase difficulty 
       obstacleAppearanceFrequency: 42   //^ increase this to increase difficulty 
     };
@@ -26,39 +27,12 @@ export default class Game {
     this.factory = new GameElementFactory();
     this.behaviours = new CommonBehaviours(this.factory).commonBehaviours;
 
-    this.unitStateMachine = new StateMachine({
-      strong: {
-        allowedStates: ["moderate"],
-        init: () => {
-          // screen = new Menu();
-          // screen.init();
-        },
-        deInit: () => {
-          // screen.deInit();
-          // screen = null;
-        },
-      },
-      moderate: {
-        allowedStates: ["weak"],
-        init: () => {
-          // screen = new Game(new PixiDelegate(app));
-          // screen.init();
-        },
-        deInit: () => {
-          // screen.deInit();
-          // screen = null;
-        },
-      },
-      weak: {
+    
 
-      }
-    },
-    "strong");
-
-    gameElements.push(this.factory.createUnit("player"));
+    Model.gameElements.push(this.factory.createUnit("player"));
     document.addEventListener("keydown", (e) => onKeyDown(e, this.behaviours));
     document.addEventListener("keyup", (e) => onKeyUp(e));
-    app.ticker.add(() => this.gameTicker(gameElements));
+    app.ticker.add(this.gameTicker);
   };
 
   deInit = () => {
@@ -66,10 +40,10 @@ export default class Game {
     document.removeEventListener("keydown", onKeyDown);
   };
 
-  gameTicker = (gameElements) => { 
+  gameTicker = () => { 
     ++this.distanceTraveled;
     
-    gameElements = gameElements.filter(el => colide(el.rect, app.screen)); //! Why is gameElements not defined untill pass it as argument to gameTicker
+    Model.gameElements = Model.gameElements.filter(el => colide(el.rect, app.screen)); //? Why is gameElements not defined untill pass it as argument to gameTicker
 
     this.generateGameObjects();
 
@@ -78,15 +52,15 @@ export default class Game {
       delegate,
     } = this;
 
-    gameElements.forEach(el => {
+    Model.gameElements.forEach(el => {
       el.behaviours.forEach(b => {
         let behaviour = behaviours[b];
         if (behaviour) {
-          behaviour(el, gameElements);
+          behaviour(el, Model.gameElements);
         };
       });
 
-      gameElements.forEach(el2 => {
+      Model.gameElements.forEach(el2 => {
         let test = el2.hitGroup & el.colides;
         let test2 = colide(el.rect, el2.rect);
         if (test > 0 && test2) {
@@ -100,8 +74,8 @@ export default class Game {
         }
       })
     })
-    // console.log(gameElements);
-    delegate.render(gameElements);
+    // console.log(Model.gameElements);
+    delegate.render(Model.gameElements);
   };
 
   generateGameObjects = () => {
@@ -109,22 +83,23 @@ export default class Game {
       factory,
       difficulty: {
         enemyShotFrequency,
-        enemyAppearanceFrequency
+        enemyAppearanceFrequency,
+        obstacleAppearanceFrequency
       }
     } = this;
 
     if (this.distanceTraveled % enemyAppearanceFrequency === 0) {
-      gameElements.push(factory.createUnit("enemy"));
+      Model.gameElements.push(factory.createUnit("enemy"));
     };
 
-    gameElements.forEach(element => {
+    Model.gameElements.forEach(element => {
       if ((element.name === "enemy") && (Math.random() * 1000 < enemyShotFrequency)) {
         element.behaviours.push("fire");
       };
     });
 
-    // if (this.distanceTraveled % difficulty.obstacleAppearanceFrequency === 0) {
-    //   gameElements.push(factory.createUnit("obstacle"));
+    // if (this.distanceTraveled % obstacleAppearanceFrequency === 0) {
+    //   Model.gameElements.push(factory.createUnit("obstacle"));
     // };
 
   };
