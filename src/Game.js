@@ -16,7 +16,7 @@ export default class Game {
       ? localStorage.getItem("hiScore")
       : 0;
     this.difficulty = {
-      enemyAppearanceFrequency: 600,    //^ increase this to DEcrease difficulty
+      enemyAppearanceFrequency: 200,    //^ increase this to DEcrease difficulty
       enemyShotFrequency: 7,            //^ increase this to increase difficulty 
       obstacleAppearanceFrequency: 42   //^ increase this to increase difficulty 
     };
@@ -26,9 +26,6 @@ export default class Game {
   init = () => {
     this.factory = new GameElementFactory();
     this.behaviours = new CommonBehaviours(this.factory).commonBehaviours;
-
-    
-
     Model.gameElements.push(this.factory.createUnit("player"));
     document.addEventListener("keydown", (e) => onKeyDown(e, this.behaviours));
     document.addEventListener("keyup", (e) => onKeyUp(e));
@@ -74,7 +71,7 @@ export default class Game {
         }
       })
     })
-    // console.log(Model.gameElements);
+    // console.log(Model.gameElements[0]);
     delegate.render(Model.gameElements);
   };
 

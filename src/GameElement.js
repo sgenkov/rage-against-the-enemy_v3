@@ -10,6 +10,7 @@ export default class GameElement {
         colides = [],
         ...rest
     }) {
+        this.state = null;
         this.rect = new Rectangle(...dimensions);
         this.id = getIndex();
         this.speed = { x: speed[0] || 0, y: speed[1] || 0 };
@@ -39,6 +40,7 @@ export default class GameElement {
                 strong: {
                   allowedStates: ["weak"],
                   init: () => {
+                      this.state = "strong";
                     // screen = new Menu();
                     // screen.init();
                   },

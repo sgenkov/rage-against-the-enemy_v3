@@ -3,21 +3,23 @@ export default class StateMachine {
         this.states = states;
         this.currentState = null;
         this.setState(init);
+        // console.log('from StateMachine', this.currentState);
     };
 
-    setState = (state) => {
+    setState = (state, nextState) => {
         let {
             states,
             currentState,
         } = this;
 
-        let selected = states[currentState];
+        this.selected = states[currentState];
+        console.log('s', this.selected);
         
         if (
             currentState == null
-            || selected.allowedStates.some(s => s == state)
+            || this.selected.allowedStates.some(s => s == state)
         ) {
-            selected && selected.deInit();
+            this.selected && this.selected.deInit();
             let newState = states[state];
             newState.init();
             this.currentState = state;
