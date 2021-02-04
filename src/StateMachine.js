@@ -3,27 +3,34 @@ export default class StateMachine {
         this.states = states;
         this.currentState = null;
         this.setState(init);
-        // console.log('from StateMachine', this.currentState);
     };
 
-    setState = (state, nextState) => {
+    setState = (state) => {
         let {
             states,
             currentState,
         } = this;
 
-        this.selected = states[currentState];
-        console.log('s', this.selected);
+        let selected = states[currentState];
         
         if (
             currentState == null
-            || this.selected.allowedStates.some(s => s == state)
+            || selected.allowedStates.some(s => s == state)
         ) {
-            this.selected && this.selected.deInit();
+            selected && selected.deInit();
             let newState = states[state];
             newState.init();
             this.currentState = state;
         };
+    };
+
+    setNextState = () => {
+        let {
+            states,
+            currentState,
+        } = this;
+        let selected = states[currentState].allowedStates;
+        this.setState(selected);
     };
 
     testMeth = () => {

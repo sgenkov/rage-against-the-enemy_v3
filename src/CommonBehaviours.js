@@ -52,12 +52,16 @@ export default class CommonBehaviours {
       },
       "break": (el) => {
         console.log('BREAK');
+        el.innerStateMachine.setNextState(null, true);
         --el.health;
-        console.log(`Health : ${el.health}`);
-        if (el.health < 1) {
-          el.behaviours.push("explode");
-        };
-        el.innerStateMachine.testMeth();
+        // console.log(`Health : ${el.health}`);
+
+        // if (el.health < 1) {                                  //* first way to expolde
+        //   el.behaviours.push("explode");
+        // };
+
+        if (el.state === "crash") el.behaviours.push("explode"); //* second way to explode 
+
         el.behaviours = el.behaviours.filter(e => e != "break");
       },
       "debugger": () => {

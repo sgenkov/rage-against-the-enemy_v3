@@ -41,8 +41,7 @@ export default class GameElement {
                   allowedStates: ["weak"],
                   init: () => {
                       this.state = "strong";
-                    // screen = new Menu();
-                    // screen.init();
+                      // this.speed = {x: -3, y: 0}
                   },
                   deInit: () => {
                   },
@@ -50,16 +49,25 @@ export default class GameElement {
                 weak: {
                   allowedStates: ["falling"],
                   init: () => {
-                    // screen = new Game(new PixiDelegate(app));
-                    // screen.init();
+                    this.state = "weak";
                   },
                   deInit: () => {
-                    // screen.deInit();
-                    // screen = null;
                   },
                 },
                 falling: {
-          
+                  allowedStates: ["crash"],
+                  init: () => {
+                    this.state = "falling";
+                  },
+                  deInit: () => {
+                  },
+                },
+                crash: {
+                  init: () => {
+                    this.state = "crash";
+                  },
+                  deInit: () => {
+                  },
                 }
               },
               "strong");

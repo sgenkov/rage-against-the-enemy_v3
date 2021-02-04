@@ -33,11 +33,17 @@ export default class PixiDelegate {
         let graphic;
 
         let foundIndex; 
-        if (el.hasOwnProperty("owner")) {
+        if (el.hasOwnProperty("owner")) { //^ Bullet direction handle
             foundIndex = freeGraphics.findIndex(g => (g.NAME === el.name) && (g.OWNER === el.owner));
         } else {
-            foundIndex = freeGraphics.findIndex(g => g.NAME === el.name);
-        }
+            foundIndex = freeGraphics.findIndex(g => {
+                if (el.state !== 'stateless') {
+                    return (g.NAME === el.name) && (el.state === g.STATE);
+                } else {
+                    return (g.NAME === el.name); 
+                }
+            });
+        };
 
         if (freeGraphics.length == 0 || foundIndex === -1) {
             graphic = createElement(el);
@@ -117,6 +123,7 @@ export default class PixiDelegate {
         }, {});
 
         gameElements.forEach(el => {
+            // console.log('el from pixiDelegate : ', el);
             if (colide(el.rect, size || screen)) {
                 let graphic;
 

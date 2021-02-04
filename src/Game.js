@@ -3,7 +3,6 @@ import { onKeyDown, onKeyUp } from './ControlsHandler';
 import { app } from './index';
 import CommonBehaviours from './CommonBehaviours';
 import GameElementFactory from './GameElementFactory';
-import StateMachine from "./StateMachine";
 import Model from './Model';
  
 export default class Game {
@@ -40,7 +39,7 @@ export default class Game {
   gameTicker = () => { 
     ++this.distanceTraveled;
     
-    Model.gameElements = Model.gameElements.filter(el => colide(el.rect, app.screen)); //? Why is gameElements not defined untill pass it as argument to gameTicker
+    Model.gameElements = Model.gameElements.filter(el => colide(el.rect, app.screen));
 
     this.generateGameObjects();
 
@@ -71,7 +70,7 @@ export default class Game {
         }
       })
     })
-    // console.log(Model.gameElements[0]);
+    // console.log(Model.gameElements);
     delegate.render(Model.gameElements);
   };
 
@@ -85,19 +84,19 @@ export default class Game {
       }
     } = this;
 
-    if (this.distanceTraveled % enemyAppearanceFrequency === 0) {
-      Model.gameElements.push(factory.createUnit("enemy"));
-    };
-
-    Model.gameElements.forEach(element => {
-      if ((element.name === "enemy") && (Math.random() * 1000 < enemyShotFrequency)) {
-        element.behaviours.push("fire");
+      if (this.distanceTraveled % enemyAppearanceFrequency === 0) {
+        Model.gameElements.push(factory.createUnit("enemy"));
       };
-    });
 
-    // if (this.distanceTraveled % obstacleAppearanceFrequency === 0) {
-    //   Model.gameElements.push(factory.createUnit("obstacle"));
-    // };
+      Model.gameElements.forEach(element => {
+        if ((element.name === "enemy") && (Math.random() * 1000 < enemyShotFrequency)) {
+          element.behaviours.push("fire");
+        };
+      });
+
+    if (this.distanceTraveled % obstacleAppearanceFrequency === 0) {
+      Model.gameElements.push(factory.createUnit("obstacle"));
+    };
 
   };
 

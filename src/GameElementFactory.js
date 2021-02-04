@@ -55,7 +55,6 @@ export default class GameElementFactory {
             "hitGroup": ["enemy"],
             "speed": [-2, 0],
             "colides": {
-                // "playerBullet": ["break"],
                 "bullet": ["break"],
                 "player": ["explode"]
             },
