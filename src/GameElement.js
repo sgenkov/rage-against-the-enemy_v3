@@ -41,7 +41,6 @@ export default class GameElement {
                   allowedStates: ["weak"],
                   init: () => {
                       this.state = "strong";
-                      // this.speed = {x: -3, y: 0}
                   },
                   deInit: () => {
                   },
@@ -50,6 +49,7 @@ export default class GameElement {
                   allowedStates: ["falling"],
                   init: () => {
                     this.state = "weak";
+                    this.behaviours.push("hitten");
                   },
                   deInit: () => {
                   },
@@ -58,6 +58,7 @@ export default class GameElement {
                   allowedStates: ["crash"],
                   init: () => {
                     this.state = "falling";
+                    this.behaviours.push("hitten");
                   },
                   deInit: () => {
                   },
@@ -65,6 +66,7 @@ export default class GameElement {
                 crash: {
                   init: () => {
                     this.state = "crash";
+                    this.behaviours.push("hitten");
                   },
                   deInit: () => {
                   },

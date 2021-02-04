@@ -94,9 +94,9 @@ export default class Game {
         };
       });
 
-    if (this.distanceTraveled % obstacleAppearanceFrequency === 0) {
-      Model.gameElements.push(factory.createUnit("obstacle"));
-    };
+    // if (this.distanceTraveled % obstacleAppearanceFrequency === 0) {
+    //   Model.gameElements.push(factory.createUnit("obstacle"));
+    // };
 
   };
 

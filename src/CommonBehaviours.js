@@ -7,7 +7,7 @@ export default class CommonBehaviours {
     // this.factory = factory;
 
     this.commonBehaviours = {
-      "move": (el) => { 
+      "move": (el) => {
         el.rect.x += el.speed.x;
         el.rect.y += el.speed.y;
       },
@@ -38,14 +38,20 @@ export default class CommonBehaviours {
       },
       "hitten": (el) => {
         console.log('HITTEN');
-        el.behaviours = el.behaviours.filter(e => e != "hitten");
+        // console.log(el);
+        if (el.state !== 'falling') {
+          el.speed.x += (el.name === "player") ? -0.5 : 0.5;
+          el.behaviours = el.behaviours.filter(e => e != "hitten")
+        } else {
+          el.speed.y += 0.5;
+        }
       },
-      "fire": (el) => { 
+      "fire": (el) => {
         // console.log('FIRE'); //^ FLOW
         Model.gameElements.push(factory.createUnit("bullet", el));
         el.behaviours = el.behaviours.filter(e => e != "fire");
       },
-      "explode": (el) => { 
+      "explode": (el) => {
         console.log('EXPLODE');
         Model.gameElements = Model.gameElements.filter(ge => ge !== el);
         el.behaviours = el.behaviours.filter(e => e != "explode");

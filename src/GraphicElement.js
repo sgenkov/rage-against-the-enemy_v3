@@ -21,6 +21,8 @@ export default class GraphicElement {
       // this.rect = {x: 50, y: 50, width: 100, height: 100};
       this.sprite.NAME = this.name;
       this.sprite.STATE = el.state;
+      this.sprite.SPEED = { ...el.speed }; // For further use
+      // this.sprite.SPEED.y = el.speed.y;
       this.sprite.scale.x = 0.1;
       this.sprite.scale.y = 0.1;
       this.sprite.anchor.set(0.5);
@@ -45,6 +47,7 @@ export default class GraphicElement {
 
       this.sprite.NAME = this.name;
       this.sprite.STATE = el.state;
+      this.sprite.SPEED = { ...el.speed }; // For further use
       this.sprite.scale.x = -0.1;
       this.sprite.scale.y = 0.1;
       this.sprite.anchor.set(0.5);

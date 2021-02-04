@@ -54,6 +54,8 @@ export default class PixiDelegate {
 
         graphic.geId = el.id;
 
+        // graphic.hasOwnProperty("SPEED") && (graphic.rotation = -Math.atan(graphic.SPEED.y / graphic.SPEED.x));
+
         stage.addChild(graphic);
 
         return graphic;
