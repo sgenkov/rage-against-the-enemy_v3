@@ -46,9 +46,18 @@ export default class GameElement {
                   },
                 },
                 weak: {
-                  allowedStates: ["falling"],
+                  allowedStates: ["miserable"],
                   init: () => {
                     this.state = "weak";
+                    this.behaviours.push("hitten");
+                  },
+                  deInit: () => {
+                  },
+                },
+                miserable: {
+                  allowedStates: ["falling"],
+                  init: () => {
+                    this.state = "miserable";
                     this.behaviours.push("hitten");
                   },
                   deInit: () => {

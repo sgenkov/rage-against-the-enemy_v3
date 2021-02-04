@@ -30,7 +30,6 @@ export default class GameElementFactory {
     createPlayer = () => {
         const newPlayer = new Player({
             "name": "player",
-            "health": 3,
             "behaviours": ["player1", "move"],
             "hitGroup": ["player"],
             "speed": [0, 0],
@@ -49,7 +48,6 @@ export default class GameElementFactory {
     createEnemy = () => {
         const newEnemy = new Enemy({
             "name": "enemy",
-            "health": 3,
             "type": "yellow",
             "behaviours": ["move"],
             "hitGroup": ["enemy"],
@@ -69,7 +67,6 @@ export default class GameElementFactory {
             : { X: x - 40, speed: - 8 }; //TODO: Make the dimensions scalable
         const newBullet = new Bullet({
             "name": "bullet",
-            "health": 1,
             "owner": name,
             "behaviours": ["move"],
             "hitGroup": ["bullet"],
