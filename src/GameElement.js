@@ -41,23 +41,26 @@ export default class GameElement {
         allowedStates: ["weak"],
         init: () => {
           this.state = "strong";
+          console.log(this.state);
         },
         deInit: () => {
         },
       },
       weak: {
-        allowedStates: ["miserable"],
+        allowedStates: ["veryWeak"],
         init: () => {
           this.state = "weak";
+          console.log(this.state);
           this.behaviours.push("hitten");
         },
         deInit: () => {
         },
       },
-      miserable: {
+      veryWeak: {
         allowedStates: ["falling"],
         init: () => {
-          this.state = "miserable";
+          this.state = "veryWeak";
+          console.log(this.state);
           this.behaviours.push("hitten");
         },
         deInit: () => {
@@ -67,14 +70,17 @@ export default class GameElement {
         allowedStates: ["crash"],
         init: () => {
           this.state = "falling";
+          console.log(this.state);
           this.behaviours.push("hitten");
         },
         deInit: () => {
+          console.log('========DEINIT');
         },
       },
       crash: {
         init: () => {
           this.state = "crash";
+          console.log('----------',this.state);
           this.behaviours.push("hitten");
         },
         deInit: () => {

@@ -25,7 +25,7 @@ export default class Game {
   init = () => {
     this.factory = new GameElementFactory();
     this.behaviours = new CommonBehaviours(this.factory).commonBehaviours;
-    Model.gameElements.push(this.factory.createUnit("player"));
+    Model.gameElements.push(this.factory.getUnit("player"));
     document.addEventListener("keydown", (e) => onKeyDown(e, this.behaviours));
     document.addEventListener("keyup", (e) => onKeyUp(e));
     app.ticker.add(this.gameTicker);
@@ -85,7 +85,7 @@ export default class Game {
     } = this;
 
       if (this.distanceTraveled % enemyAppearanceFrequency === 0) {
-        Model.gameElements.push(factory.createUnit("enemy"));
+        Model.gameElements.push(factory.getUnit("enemy"));
       };
 
       Model.gameElements.forEach(element => {
@@ -94,9 +94,9 @@ export default class Game {
         };
       });
 
-    if (this.distanceTraveled % obstacleAppearanceFrequency === 0) {
-      Model.gameElements.push(factory.createUnit("obstacle"));
-    };
+    // if (this.distanceTraveled % obstacleAppearanceFrequency === 0) {
+    //   Model.gameElements.push(factory.getUnit("obstacle"));
+    // };
 
   };
 

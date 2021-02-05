@@ -23,6 +23,10 @@ export default class GameElementFactory {
 
     };
 
+    getUnit = (type, el) => {
+        return this.createUnit(type, el);
+    };
+
     createUnit = (type, el) => {
         return this.unitMap.get(type)(el);
     };

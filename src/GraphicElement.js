@@ -15,7 +15,7 @@ export default class GraphicElement {
 
   getSprite = (el) => {
     if (this.name === "player") {
-      console.log('PLAYER CREATED'); //^ Object pooling monitoring
+      // console.log('PLAYER CREATED'); //^ Object pooling monitoring
       this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["player"]);
       this.sprite.NAME = this.name;
       this.sprite.STATE = el.state;
@@ -26,13 +26,13 @@ export default class GraphicElement {
     } else if (this.name === "enemy") {
       // console.log('ENEMY CREATED'); //^ Object pooling monitoring
       if (el.state === "strong") {
-        console.log('STRONG ENEMY CREATED'); //^ Object pooling monitoring
+        // console.log('STRONG ENEMY CREATED'); //^ Object pooling monitoring
         this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["enemy_blue"]);
       } else if (el.state === "weak") {
-        console.log('WEAK ENEMY CREATED'); //^ Object pooling monitoring
+        // console.log('WEAK ENEMY CREATED'); //^ Object pooling monitoring
         this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["enemy_yellow"]);
       } else {
-        console.log('FALLING ENEMY CREATED'); //^ Object pooling monitoring
+        // console.log('FALLING ENEMY CREATED'); //^ Object pooling monitoring
         this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["enemy_red"]);
       };
 
@@ -43,7 +43,7 @@ export default class GraphicElement {
       this.sprite.scale.y = 0.1;
       // this.sprite.anchor.set(0.5);
     } else if (this.name === "bullet") {
-      console.log('BULLET CREATED'); //^ Object pooling monitoring
+      // console.log('BULLET CREATED'); //^ Object pooling monitoring
       this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["bullet"]);
       this.sprite.NAME = this.name;
       if (el.hasOwnProperty("owner")) {
@@ -53,7 +53,7 @@ export default class GraphicElement {
       this.sprite.scale.y = 0.2;
       this.sprite.anchor.set(0.5);
     } else if (this.name === "obstacle") {
-      console.log('OBSTACLE CREATED'); //^ Object pooling monitoring
+      // console.log('OBSTACLE CREATED'); //^ Object pooling monitoring
       this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["obstacle"]);
       this.sprite.NAME = this.name;
       this.sprite.scale.x = 0.1;
