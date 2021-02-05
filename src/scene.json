@@ -27,5 +27,10 @@
     ],
     "assets" : [
         ["SpriteSheet2", "SpriteSheet2.png"]
-    ]
+    ],
+    "defaultUnitsParams": {
+        "enemy" : {
+            
+        }
+    }
 }

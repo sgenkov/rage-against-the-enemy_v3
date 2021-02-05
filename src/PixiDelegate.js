@@ -51,7 +51,6 @@ export default class PixiDelegate {
             graphic = freeGraphics[foundIndex];                                 //? SLOWDOWN CODE HERE ??
             freeGraphics.splice(foundIndex, 1);                                 //? SLOWDOWN CODE HERE ??
         };
-
         graphic.geId = el.id;
         // graphic.hasOwnProperty("SPEED") && (graphic.rotation = -Math.atan(graphic.SPEED.y / graphic.SPEED.x));
         stage.addChild(graphic);

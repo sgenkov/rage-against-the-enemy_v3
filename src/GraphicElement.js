@@ -6,7 +6,7 @@ export default class GraphicElement {
     // console.log('el rect', el.rect);
     this.name = el.name;
     this.speed = 0;
-    this.type = el.type;
+    // this.type = el.type;
     this.rect = el.rect;
     this.getSprite(el); //TODO: General refactoring of getSprite() method
   };
@@ -22,7 +22,7 @@ export default class GraphicElement {
       this.sprite.SPEED = { ...el.speed }; // For further use
       this.sprite.scale.x = 0.1;
       this.sprite.scale.y = 0.1;
-      this.sprite.anchor.set(0.5);
+      // this.sprite.anchor.set(0.5);
     } else if (this.name === "enemy") {
       // console.log('ENEMY CREATED'); //^ Object pooling monitoring
       if (el.state === "strong") {
@@ -41,7 +41,7 @@ export default class GraphicElement {
       this.sprite.SPEED = { ...el.speed }; // For further use
       this.sprite.scale.x = -0.1;
       this.sprite.scale.y = 0.1;
-      this.sprite.anchor.set(0.5);
+      // this.sprite.anchor.set(0.5);
     } else if (this.name === "bullet") {
       console.log('BULLET CREATED'); //^ Object pooling monitoring
       this.sprite = new PIXI.Sprite.from(GameAssetsLoader.SHEETS["bullet"]);

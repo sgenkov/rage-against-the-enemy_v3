@@ -40,7 +40,7 @@ export default class GameElementFactory {
                 "bullet": ["break"],
                 "obstacle": ["explode"]
             },
-            "dimensions": [49, app.view.height / 2, 60, 60] //TODO: Make the dimensions scalable
+            "dimensions": [49, app.view.height / 2, 92.5, 45.5] //TODO: Make the dimensions scalable
         });
         return newPlayer;
     };
@@ -48,7 +48,7 @@ export default class GameElementFactory {
     createEnemy = () => {
         const newEnemy = new Enemy({
             "name": "enemy",
-            "type": "yellow",
+            // "type": "yellow",
             "behaviours": ["move"],
             "hitGroup": ["enemy"],
             "speed": [-2, 0],
@@ -56,15 +56,20 @@ export default class GameElementFactory {
                 "bullet": ["break"],
                 "player": ["explode"]
             },
-            "dimensions": [app.view.width - 30, Math.random() * (app.view.height - 45) + 20, 60, 60] //TODO: Make the dimensions scalable
+            "dimensions": [app.view.width - 30, Math.random() * (app.view.height - 45) + 20, 92.5, 45.5] //TODO: Make the dimensions scalable
         });
         return newEnemy;
     };
 
     createBullet = ({ rect: { x, y, width }, name }) => {
+        // const bulletParams = (name === "player")
+        //     ? { X: x + 90, speed: 8 }
+        //     : { X: x - 40, speed: - 8 }; //TODO: Make the dimensions scalable
+
         const bulletParams = (name === "player")
-            ? { X: x + 90, speed: 8 }
-            : { X: x - 40, speed: - 8 }; //TODO: Make the dimensions scalable
+            ? { X: x + 99, speed: 8 }
+            : { X: x - 99, speed: - 8 }; //TODO: Make the dimensions scalable
+
         const newBullet = new Bullet({
             "name": "bullet",
             "owner": name,
@@ -75,7 +80,7 @@ export default class GameElementFactory {
                 "enemy": ["explode"],
                 "player": ["explode"]
             },
-            "dimensions": [bulletParams.X, y, 30, 10] //TODO: Make the dimensions scalable
+            "dimensions": [bulletParams.X, y + 29, 30, 10] //TODO: Make the dimensions scalable
         });
         return newBullet;
     };
