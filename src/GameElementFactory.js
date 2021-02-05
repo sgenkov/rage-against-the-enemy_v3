@@ -8,7 +8,7 @@ export default class GameElementFactory {
     constructor() {
         this.init();
     };
-    
+
     init = () => {
         this.unitMap = new Map([
             ["enemy", this.createEnemy],
@@ -16,7 +16,7 @@ export default class GameElementFactory {
             ["bullet", this.createBullet],
             ["obstacle", this.createObstacle]
         ]);
-        
+
         // scene.elements.forEach((sceneElement) => {
         //     this.createUnit(sceneElement.name);
         // });
@@ -87,7 +87,7 @@ export default class GameElementFactory {
             "hitGroup": ["obstacle"],
             "speed": [-2, 0],
             "dimensions": [app.view.width, app.view.height - 5, Math.random() * 150, Math.random() * 150] //TODO: Make the dimensions scalable
-            // "dimensions": [250 , 250, 60, 60] //TODO: Make the dimensions scalable
+            // "dimensions": [200, 200, 12222, 12222]
         });
         return newObstacle;
     };

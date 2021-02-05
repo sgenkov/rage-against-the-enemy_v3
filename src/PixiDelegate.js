@@ -41,7 +41,7 @@ export default class PixiDelegate {
                     return (g.NAME === el.name) && (el.state === g.STATE);
                 } else {
                     return (g.NAME === el.name); 
-                }
+                };
             });
         };
 
@@ -53,13 +53,11 @@ export default class PixiDelegate {
         };
 
         graphic.geId = el.id;
-
         // graphic.hasOwnProperty("SPEED") && (graphic.rotation = -Math.atan(graphic.SPEED.y / graphic.SPEED.x));
-
         stage.addChild(graphic);
 
         return graphic;
-    }
+    };
 
     freeUpGraphic = (graphic) => {
         let {

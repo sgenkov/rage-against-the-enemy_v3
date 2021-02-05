@@ -59,7 +59,7 @@ export default class CommonBehaviours {
       "break": (el) => {
         console.log('BREAK');
         el.innerStateMachine.setNextState(null, true);
-        
+
         if (el.state === "crash") el.behaviours.push("explode");
 
         el.behaviours = el.behaviours.filter(e => e != "break");
