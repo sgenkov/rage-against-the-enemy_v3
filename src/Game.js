@@ -4,7 +4,7 @@ import { app } from './index';
 import CommonBehaviours from './CommonBehaviours';
 import GameElementFactory from './GameElementFactory';
 import Model from './Model';
- 
+
 export default class Game {
   constructor(delegate) {
     this.name = "play";
@@ -36,10 +36,19 @@ export default class Game {
     document.removeEventListener("keydown", onKeyDown);
   };
 
-  gameTicker = () => { 
+  gameTicker = () => {
     ++this.distanceTraveled;
-    
-    Model.gameElements = Model.gameElements.filter(el => colide(el.rect, app.screen));
+
+    Model.gameElements = Model.gameElements.filter(el => {
+      if (colide(el.rect, app.screen)) {
+        return true;
+      } else { 
+        el.reset();
+        Model.freeGameElements.push(el);
+        console.log(Model.freeGameElements);
+        return false;
+      }
+    });
 
     this.generateGameObjects();
 
@@ -84,15 +93,15 @@ export default class Game {
       }
     } = this;
 
-      if (this.distanceTraveled % enemyAppearanceFrequency === 0) {
-        Model.gameElements.push(factory.getUnit("enemy"));
-      };
+    if (this.distanceTraveled % enemyAppearanceFrequency === 0) {
+      Model.gameElements.push(factory.getUnit("enemy"));
+    };
 
-      Model.gameElements.forEach(element => {
-        if ((element.name === "enemy") && (Math.random() * 1000 < enemyShotFrequency)) {
-          element.behaviours.push("fire");
-        };
-      });
+    // Model.gameElements.forEach(element => {
+    //   if ((element.name === "enemy") && (Math.random() * 1000 < enemyShotFrequency)) {
+    //     element.behaviours.push("fire");
+    //   };
+    // });
 
     // if (this.distanceTraveled % obstacleAppearanceFrequency === 0) {
     //   Model.gameElements.push(factory.getUnit("obstacle"));

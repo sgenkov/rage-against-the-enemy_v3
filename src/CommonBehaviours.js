@@ -52,7 +52,14 @@ export default class CommonBehaviours {
       },
       "explode": (el) => {
         // console.log('EXPLODE');
-        Model.gameElements = Model.gameElements.filter(ge => ge !== el);
+        Model.gameElements = Model.gameElements.filter(ge => {
+          if (ge !== el) {
+            return true;
+          } else {
+            el.reset();
+            Model.freeGameElements.push(el);
+          };
+        });
         el.behaviours = el.behaviours.filter(e => e != "explode");
       },
       "break": (el) => {

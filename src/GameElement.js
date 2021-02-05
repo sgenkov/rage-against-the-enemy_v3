@@ -10,6 +10,7 @@ export default class GameElement {
     colides = [],
     ...rest
   }) {
+    this.logging = false; //* delete this later
     this.state = null;
     this.rect = new Rectangle(...dimensions);
     this.id = getIndex();
@@ -41,7 +42,7 @@ export default class GameElement {
         allowedStates: ["weak"],
         init: () => {
           this.state = "strong";
-          console.log(this.state);
+          this.logging && console.log(this.state);
         },
         deInit: () => {
         },
@@ -50,7 +51,7 @@ export default class GameElement {
         allowedStates: ["veryWeak"],
         init: () => {
           this.state = "weak";
-          console.log(this.state);
+          this.logging && console.log(this.state);
           this.behaviours.push("hitten");
         },
         deInit: () => {
@@ -60,7 +61,7 @@ export default class GameElement {
         allowedStates: ["falling"],
         init: () => {
           this.state = "veryWeak";
-          console.log(this.state);
+          this.logging && console.log(this.state);
           this.behaviours.push("hitten");
         },
         deInit: () => {
@@ -70,7 +71,7 @@ export default class GameElement {
         allowedStates: ["crash"],
         init: () => {
           this.state = "falling";
-          console.log(this.state);
+          this.logging && console.log(this.state);
           this.behaviours.push("hitten");
         },
         deInit: () => {
@@ -80,7 +81,7 @@ export default class GameElement {
       crash: {
         init: () => {
           this.state = "crash";
-          console.log('----------',this.state);
+          this.logging && console.log('----------',this.state);
           this.behaviours.push("hitten");
         },
         deInit: () => {
@@ -88,5 +89,11 @@ export default class GameElement {
       }
     },
       "strong");
+
+      // console.log('rect', this.rect);
   };
+
+  reset = () => {
+
+  };  
 };
