@@ -29,11 +29,8 @@ export default class StateMachine {
             states,
             currentState,
         } = this;
-        let selected = states[currentState].allowedStates;
+        let selected = states[currentState].allowedStates[0];
         this.setState(selected);
     };
 
-    testMeth = () => {
-        console.log('innerStateMachine testMeth()');
-    }
 };

@@ -5,9 +5,11 @@ import Obstacle from './UnitModel/Obstacle';
 import Model from './Model';
 import Rectangle from './Rectangle';
 import { app } from './index';
+import DC from './debugConfig.json';
 
 export default class GameElementFactory {
     constructor() {
+        this.objectPoolingEnabled = false; //* delete this later
         this.init();
     };
 
@@ -26,25 +28,27 @@ export default class GameElementFactory {
     };
 
     getUnit = (type, el) => {
-        const foundElement = Model.freeGameElements.find(freeEl => freeEl.name === type);
+        const foundElementIndex = Model.freeGameElements.findIndex(freeEl => freeEl.name === type);
+        const foundElement = foundElementIndex !== -1 ? Model.freeGameElements[foundElementIndex] : undefined;
         console.log('foundEl : ', foundElement);
 
-        if (foundElement) {
-            Model.freeGameElements.filter(EL => EL !== foundElement);
+        if (foundElement && this.objectPoolingEnabled) {
+            // Model.freeGameElements.splice(foundElementIndex, 1);
             if (el) {
-
+                const bulletParams = this.getBulletParams(el.name, el.rect.x);
+                // foundElement.rect = new Rectangle(bulletParams.X, el.rect.y + 29, 20, 10);
+                console.log("rect", foundElement.rect );
+                // foundElement.rect = new Rectangle(100, 100 + 29, 30, 10);
+                foundElement.rect.x = 100;
+                foundElement.rect.x = 200;
+                foundElement.rect.y = 100;
+                foundElement.rect.width = 30;
+                foundElement.rect.height = 10;
+                console.log("rect after", foundElement.rect );
+                foundElement.speed = bulletParams.speed;
             } else {
-
-
-
-
-                foundElement.rect = new Rectangle(app.view.width - 30, Math.random() * (app.view.height - 45) + 20, 92.5, 54.5);
-
-
-
-
-
-
+                // foundElement.rect = new Rectangle(app.view.width - 30, Math.random() * (app.view.height - 45) + 20, 92.5, 54.5);
+                foundElement.innerStateMachine.setState("strong");
                 foundElement.speed = { x: -2, y: 0 };
             };
 
@@ -52,6 +56,13 @@ export default class GameElementFactory {
         } else {
             return this.createUnit(type, el);
         };
+    };
+    getBulletParams = (name, x) => {
+        const res =  (name === "player") //TODO: Make method for this operation
+            ? { X: x + 99, speed: 8 }
+            : { X: x - 99, speed: - 8 } //TODO: Make the dimensions scalable
+            console.log('res', res);
+            return res; 
     };
     // if (false && foundElement) {
     //     const bulletParams = (el && el.name === "player") //TODO: Make method for this operation
@@ -149,11 +160,7 @@ export default class GameElementFactory {
         return newObstacle;
     };
 
-    getBulletParams = (name, x) => {
-        return (name === "player") //TODO: Make method for this operation
-            ? { X: x + 99, speed: 8 }
-            : { X: x - 99, speed: - 8 } //TODO: Make the dimensions scalable
-    };
+    
 
 };
 

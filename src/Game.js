@@ -7,6 +7,7 @@ import Model from './Model';
 
 export default class Game {
   constructor(delegate) {
+    this.deleteThis = 0;
     this.name = "play";
     this.delegate = delegate;
     this.score = 0;
@@ -37,13 +38,18 @@ export default class Game {
   };
 
   gameTicker = () => {
+    // this.deleteThis ++;
+    // if(this.deleteThis%6 !== 0) {
+    //   return;
+    // };
+
     ++this.distanceTraveled;
 
     Model.gameElements = Model.gameElements.filter(el => {
       if (colide(el.rect, app.screen)) {
         return true;
       } else { 
-        el.reset();
+        console.log('el : ', el);
         Model.freeGameElements.push(el);
         console.log(Model.freeGameElements);
         return false;
@@ -74,11 +80,11 @@ export default class Game {
 
           el.colideMap[test].forEach(b => {
             behaviours[b](el);
-          })
+          });
 
-        }
-      })
-    })
+        };
+      });
+    });
     // console.log(Model.gameElements);
     delegate.render(Model.gameElements);
   };
@@ -97,11 +103,11 @@ export default class Game {
       Model.gameElements.push(factory.getUnit("enemy"));
     };
 
-    // Model.gameElements.forEach(element => {
-    //   if ((element.name === "enemy") && (Math.random() * 1000 < enemyShotFrequency)) {
-    //     element.behaviours.push("fire");
-    //   };
-    // });
+    Model.gameElements.forEach(element => {
+      if ((element.name === "enemy") && (Math.random() * 1000 < enemyShotFrequency)) {
+        element.behaviours.push("fire");
+      };
+    });
 
     // if (this.distanceTraveled % obstacleAppearanceFrequency === 0) {
     //   Model.gameElements.push(factory.getUnit("obstacle"));

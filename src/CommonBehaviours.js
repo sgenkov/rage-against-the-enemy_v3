@@ -56,7 +56,6 @@ export default class CommonBehaviours {
           if (ge !== el) {
             return true;
           } else {
-            el.reset();
             Model.freeGameElements.push(el);
           };
         });

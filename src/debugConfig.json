@@ -1,0 +1,7 @@
+{
+    "mainFlow": false,
+    "GameElementsPooling": false,
+    "PixiDelegatePooling": false,
+    "GlobalStateFlow": false,
+    "GameElementInnerState": false
+}

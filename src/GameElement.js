@@ -39,7 +39,7 @@ export default class GameElement {
 
     this.innerStateMachine = new StateMachine({
       strong: {
-        allowedStates: ["weak"],
+        allowedStates: ["weak", "strong"],
         init: () => {
           this.state = "strong";
           this.logging && console.log(this.state);
@@ -48,7 +48,7 @@ export default class GameElement {
         },
       },
       weak: {
-        allowedStates: ["veryWeak"],
+        allowedStates: ["veryWeak", "strong"],
         init: () => {
           this.state = "weak";
           this.logging && console.log(this.state);
@@ -58,7 +58,7 @@ export default class GameElement {
         },
       },
       veryWeak: {
-        allowedStates: ["falling"],
+        allowedStates: ["falling", "strong"],
         init: () => {
           this.state = "veryWeak";
           this.logging && console.log(this.state);
@@ -68,7 +68,7 @@ export default class GameElement {
         },
       },
       falling: {
-        allowedStates: ["crash"],
+        allowedStates: ["crash", "strong"],
         init: () => {
           this.state = "falling";
           this.logging && console.log(this.state);
@@ -81,7 +81,7 @@ export default class GameElement {
       crash: {
         init: () => {
           this.state = "crash";
-          this.logging && console.log('----------',this.state);
+          this.logging && console.log('----------', this.state);
           this.behaviours.push("hitten");
         },
         deInit: () => {
@@ -90,10 +90,7 @@ export default class GameElement {
     },
       "strong");
 
-      // console.log('rect', this.rect);
+    // console.log('rect', this.rect);
   };
 
-  reset = () => {
-
-  };  
 };
